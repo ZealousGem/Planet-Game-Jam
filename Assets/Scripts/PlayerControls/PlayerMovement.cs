@@ -5,7 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : GameplayInputBinding
 {
-
+    /// <summary>
+    /// 
+    /// This script handles all the player movement such as zooms and moving the camera  
+    /// 
+    /// 
+    /// </summary>
     private Camera cam;
 
     [Header("Camera Speed")]

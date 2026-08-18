@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class GunPool : MonoBehaviour
 {
+    /// <summary>
+    /// 
+    /// 
+    /// Pooling System to sapwn bullets cleanly instead of destroy them constantly
+    /// 
+    /// 
+    /// </summary>
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("Weapon")]
     [SerializeField] private GameObject Missile;

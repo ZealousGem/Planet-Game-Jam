@@ -4,6 +4,12 @@ using UnityEngine.InputSystem;
 
 public class SateliteControls : PlayerMovement
 {
+
+    /// <summary>
+    /// 
+    /// Script handles shooting controls 
+    /// 
+    /// </summary>
     [Header("Cooldowns")]
     [SerializeField] private float recoilSpeed = 1f;
     [SerializeField] private float reloadSpeed = 3f;

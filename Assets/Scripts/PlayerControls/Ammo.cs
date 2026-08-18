@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class Ammo : MonoBehaviour
 {
+    /// <summary>
+    /// 
+    /// 
+    /// Handles Bullets lifespan and collision with any enemy objects 
+    /// 
+    /// 
+    /// </summary>
     [SerializeField] private float lifeTime = 0.8f;
     // bullet life span once active
     private GunPool pool;
