@@ -403,7 +403,7 @@ MonoBehaviour:
   MinZoom: 5
   ZoomOut: 8.69
   ZoomSpeed: 4
-  recoilSpeed: 1
+  recoilSpeed: 0.2
   reloadSpeed: 3
   Nozzle: {fileID: 313505656}
   pool: {fileID: 313505657}

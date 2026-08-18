@@ -29,13 +29,18 @@ public class PlayerMovement : GameplayInputBinding
 
     private Coroutine ZoomEffect;
 
+    // binding camera
     protected override void Awake()
     {
         base.Awake();
         cam = GetComponent<Camera>();
     }
+
+    // inputs for movement 
     protected override void MoveSatelite(InputAction.CallbackContext value) => movement = value.ReadValue<Vector2>();
     protected override void CancelMovment(InputAction.CallbackContext value) => movement = Vector2.zero;
+
+    // zoom in camera function that will zoom to a certain size based on whether the bool is true or false
     protected override void ZoomCamera(InputAction.CallbackContext value)
     {
         if (isZoomedIn) isZoomedOut = false;
@@ -56,6 +61,7 @@ public class PlayerMovement : GameplayInputBinding
         StartCouritineForZoom();
     }
 
+    // zoomout function similar to the zoom in function but making the zoom further out
     protected override void ZoomOutCamera(InputAction.CallbackContext value)
     {
         if (!isZoomedOut)
@@ -75,6 +81,7 @@ public class PlayerMovement : GameplayInputBinding
 
     }
 
+    // this helps make sure courtines are not overloaded and cleaning stops the courtine if and input is immedaly invoked
     private void StartCouritineForZoom()
     {
         if (ZoomEffect != null)
@@ -85,15 +92,17 @@ public class PlayerMovement : GameplayInputBinding
 
         ZoomEffect = StartCoroutine(ZoomCameraEffect(currentZoomSize));
     }
-
+    // pauses game and disable player controls, might remove it and ad this action in the pause menu  
     protected override void PauseGame(InputAction.CallbackContext value)
     {
 
     }
 
+    // moves the camera
+
     private void LateUpdate() => HandleMovement();
 
-
+    // handles zoom transition 
     private IEnumerator ZoomCameraEffect(float targetSize)
     {
         if (cam == null)
@@ -116,6 +125,7 @@ public class PlayerMovement : GameplayInputBinding
         ZoomEffect = null;
     }
 
+    // handles movement offset 
     private void HandleMovement()
     {
         transform.position += movement * speed * Time.deltaTime;

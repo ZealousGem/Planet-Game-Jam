@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,15 +11,24 @@ public class SateliteControls : PlayerMovement
     [Header("Weapon")]
     [SerializeField] private Transform Nozzle;
 
-
     [Header("Pool")]
     [SerializeField] private GunPool pool;
     private bool reloading = false;
 
+    private int Maxbulletcount = 15;
+
+    private int bulletCounter;
+
+    // binds current count to max at begining of scene
+    protected override void Awake()
+    {
+        base.Awake();
+        bulletCounter = Maxbulletcount;
+    }
+
+    // uses shooting bullet input uses pooling system to spawn or relocate object
     protected override void ShootBullet(InputAction.CallbackContext value)
     {
-        Debug.Log("firing");
-
         if (reloading) return;
 
         Vector3 spawnPosition = Nozzle.position;
@@ -26,6 +36,55 @@ public class SateliteControls : PlayerMovement
 
         pool.getObj(spawnPosition, transform.rotation);
 
+        Recoil();
 
+    }
+
+    // cooldown method that also decrease bullets overtime if bullet counter is under then function will force player to reload
+    private void Recoil()
+    {
+        bulletCounter--;
+
+        reloading = true;
+
+        if (bulletCounter <= 0)
+        {
+            StartCoroutine(ReloadSpeed(reloadSpeed, Maxbulletcount));
+        }
+
+        else
+        {
+            StartCoroutine(ReloadSpeed(recoilSpeed));
+        }
+
+    }
+
+    // reload courtine stop player from shooting for a couple of seconds
+    private IEnumerator ReloadSpeed(float counter)
+    {
+        float cur = 0f;
+
+        while (cur < counter)
+        {
+            cur += Time.deltaTime;
+            yield return null;
+        }
+
+        reloading = false;
+    }
+
+    private IEnumerator ReloadSpeed(float counter, int bullets)
+    {
+        float cur = 0f;
+        Debug.Log("reloading");
+
+        while (cur < counter)
+        {
+            cur += Time.deltaTime;
+            yield return null;
+        }
+        bulletCounter = bullets;
+        reloading = false;
+        Debug.Log("ready");
     }
 }

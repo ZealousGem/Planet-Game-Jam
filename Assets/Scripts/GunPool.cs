@@ -9,10 +9,13 @@ public class GunPool : MonoBehaviour
     [SerializeField] private GameObject Missile;
     private Queue<GameObject> bullets;
 
+    // creates a new queue at begining of scene so variable isnt null during runtime
     private void Awake()
     {
         bullets = new Queue<GameObject>();
     }
+
+    // activates any deactived bullets from queue  or instaniate bullet if queue is empty
 
     public GameObject getObj(Vector3 transform, Quaternion rotation)
     {
@@ -40,6 +43,11 @@ public class GunPool : MonoBehaviour
         return obj;
     }
 
+    /// <summary>
+    /// 
+    /// empties pool once weapon or bullet is changed based on the upgrades 
+    /// 
+    /// </summary>
     public void ClearPool()
     {
         while (bullets.Count > 0)
@@ -53,7 +61,7 @@ public class GunPool : MonoBehaviour
         bullets.Clear();
     }
 
-    // Update is called once per frame
+    // reque object once bullet has despawned
     public void ReturnObject(GameObject obj)
     {
         obj.SetActive(false);
