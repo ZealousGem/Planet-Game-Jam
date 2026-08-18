@@ -86,20 +86,13 @@ public class PlayerMovement : GameplayInputBinding
         ZoomEffect = StartCoroutine(ZoomCameraEffect(currentZoomSize));
     }
 
-    protected override void ShootBullet(InputAction.CallbackContext value)
-    {
-
-    }
-
     protected override void PauseGame(InputAction.CallbackContext value)
     {
 
     }
 
-    private void LateUpdate()
-    {
-        HandleMovement();
-    }
+    private void LateUpdate() => HandleMovement();
+
 
     private IEnumerator ZoomCameraEffect(float targetSize)
     {
