@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 398045191}
   - component: {fileID: 398045192}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Settlement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -335,6 +336,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65926e53cb2d04f41825128e467de964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  speed: 8
+  minX: -10
+  MaxX: 70
+  minY: -30
+  MaxY: 40
+  MaxZoom: 2.32
+  MinZoom: 5
+  ZoomOut: 8.69
+  ZoomSpeed: 4
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +442,11 @@ MonoBehaviour:
         m_SelectedSource:
           rid: -2
         m_Provider2DCache:
-          rid: -2
+          rid: 5860744836927717448
+    - rid: 5860744836927717448
+      type: {class: 'Provider2DCache`1[[UnityEngine.Rendering.Universal.Light2DProvider, Unity.RenderPipelines.Universal.2D.Runtime]]', ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
+      data:
+        m_Cache: []
 --- !u!4 &619394802
 Transform:
   m_ObjectHideFlags: 0
@@ -446,7 +472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1671376487}
   - component: {fileID: 1671376488}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
