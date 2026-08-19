@@ -36,8 +36,22 @@ public class BaseEnemy : MonoBehaviour
 
         BasicEnemyAI(actions);
 
-        Leaf Patrol = new Leaf("Patrol", new MoveTowards(transform, Target, 6f));
-        actions.AddChild(Patrol);
+        Sequence MovingToTarget = new Sequence("finding target", 50);
+
+        bool SettlementisSeen()
+        {
+            if (Target != null) return true;
+
+            // Target is null, attempt to re-acquire right here
+            FindNewSettlement();
+
+            return Target != null; // Returns true if a new target was successfully found
+        }
+
+        MovingToTarget.AddChild(new Leaf("IsEnemyClose", new Condition(SettlementisSeen)));
+        MovingToTarget.AddChild(new Leaf("Patrol", new MoveTowards(transform, Target, 6f)));
+        // Leaf Patrol = new Leaf("Patrol", new MoveTowards(transform, Target, 6f));
+        actions.AddChild(MovingToTarget);
 
         // actions.AddChild(actions);
         tree.AddChild(actions);
@@ -65,6 +79,18 @@ public class BaseEnemy : MonoBehaviour
         DeathSequnce.AddChild(new Leaf("IsEnemyClose", new Condition(HasEnemyDied)));
         DeathSequnce.AddChild(new Leaf("AttackEnemy", new DeathAnimation(animator, HasEnemyDied)));
         actions.AddChild(DeathSequnce);
+    }
+
+    private void FindNewSettlement()
+    {
+        // Layer mask search (e.g., Physics2D.OverlapCircleAll or Physics.OverlapSphere)
+        Collider[] settlements = Physics.OverlapSphere(transform.position, 100f, targetLayerMask);
+
+        if (settlements.Length > 0)
+        {
+            // Pick the closest settlement or first found
+            Target = settlements[0].transform;
+        }
     }
 
     private void InstatiateTarget(Transform transform) => Target = transform;

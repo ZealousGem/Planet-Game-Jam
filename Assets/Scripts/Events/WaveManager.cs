@@ -88,13 +88,18 @@ public class WaveManager : MonoBehaviour
     private IEnumerator StartWave()
     {
         float currentTime = 5f;
+        int lastLoggedSecond = -1;
+
         while (currentTime >= 1)
         {
 
             currentTime -= Time.deltaTime;
 
-            if (Mathf.Approximately(currentTime, Mathf.Round(currentTime)))
+            int currentSecond = Mathf.CeilToInt(currentTime);
+
+            if (currentTime != lastLoggedSecond && currentSecond >= 1)
             {
+                lastLoggedSecond = currentSecond;
                 string annouceText = " New Wave Starting in " + currentTime.ToString("F0");
                 Debug.Log(annouceText);
             }
