@@ -1,25 +1,32 @@
+using System;
 using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour
 {
 
     [SerializeField] protected Transform Target;
-    [SerializeField] private float EnemyHealth = 100f;
     [SerializeField] private LayerMask targetLayerMask;
     [SerializeField] protected Animator animator;
-    public float Speed;
+    public float EnemyHealth = 100f;
+    public float Speed = 5f;
+    public float Damage = 60f;
     protected float attackRange = 0.5f;
     protected bool SettleMentFound = false;
     protected BehaviourTree tree;
     private bool isReady = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected virtual void Awake()
+    // protected virtual void Awake()
+    // {
+    //     SetUpTree();
+    // }
+
+    public virtual void Initialise(Transform targetTransform)
     {
+        InstatiateTarget(Target);
         SetUpTree();
     }
     protected virtual void SetUpTree()
     {
-
         isReady = true;
 
         tree = new BehaviourTree("Enemy");
