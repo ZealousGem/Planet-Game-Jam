@@ -22,9 +22,11 @@ public class BaseEnemy : MonoBehaviour
 
     public virtual void Initialise(Transform targetTransform)
     {
-        InstatiateTarget(Target);
+        InstatiateTarget(targetTransform);
         SetUpTree();
+
     }
+
     protected virtual void SetUpTree()
     {
         isReady = true;
@@ -65,7 +67,7 @@ public class BaseEnemy : MonoBehaviour
         actions.AddChild(DeathSequnce);
     }
 
-    public void InstatiateTarget(Transform transform) => Target = transform;
+    private void InstatiateTarget(Transform transform) => Target = transform;
     // Update is called once per frame
     private void Update() { if (!isReady) return; tree.Process(); }
 }

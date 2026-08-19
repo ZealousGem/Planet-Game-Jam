@@ -46,23 +46,41 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private LayerMask targetLayers;
     [SerializeField] private float radius = 5f;
 
+    [Header("Amount of Enemies that should be spawned at the first wave")]
+    [SerializeField] private int EnemeyWaveAmount = 10;
+
     // private variables
     private List<EnemyWeights> Enemies = new List<EnemyWeights>();
     private List<GameObject> CurrentEnemies = new List<GameObject>();
     private List<GameObject> EnemiesToSpawn = new List<GameObject>();
     private GameState currentGameState = GameState.Start;
-    private int EnemeyWaveAmount = 0;
     private int ChangeWaveTypeIndex = 0;
-    private int waveIndex = 0;
+    private int EnemyTypeIndex = 1;
     private float counter = 0;
-    private LayerMask layerMask;
-    private Collider[] colliders;
 
     private void Awake() => initialiseFirstWave();
+
+    void OnEnable()
+    {
+        EventBus.Subscribe<GameStateEvent>(RetrieveData);
+    }
+
+    void OnDisable()
+    {
+        EventBus.Unsubscribe<GameStateEvent>(RetrieveData);
+    }
+
+    private void RetrieveData(GameStateEvent data)
+    {
+        if (data.gameState == GameState.StartWave)
+        {
+            StartCoroutine(StartWave());
+        }
+    }
+
     private void initialiseFirstWave()
     {
         CurrentEnemies = EnemyPrefabs[0].Enemies;
-        waveIndex++;
         ChangeWaveTypeIndex = 3;
         CalEnemyWieghts();
     }
@@ -75,18 +93,23 @@ public class WaveManager : MonoBehaviour
 
             currentTime -= Time.deltaTime;
 
-
-            string annouceText = " New Wave Starting in " + currentTime.ToString("F0");
-            Debug.Log(annouceText);
-
+            if (Mathf.Approximately(currentTime, Mathf.Round(currentTime)))
+            {
+                string annouceText = " New Wave Starting in " + currentTime.ToString("F0");
+                Debug.Log(annouceText);
+            }
 
             yield return null;
         }
-        // EndGameEvent ui = new EndGameEvent(StatsChange.EnemieLeft, maxbotKilled);
-        // EventBus.Act(ui);
-        // WaveAnnouncer.text = "";
-        // SpawnEnemiesCounter = maxbotKilled;
-        // isFound = true;
+
+        if (GameState.Start != currentGameState)
+        {
+            ChangeWave();
+        }
+
+        currentGameState = GameState.Ongoing;
+
+        // call event here 
     }
     private void CalEnemyWieghts() // uses proablity wight sysystem to  from the enemy prefab to create unprediable waves 
     {
@@ -125,9 +148,10 @@ public class WaveManager : MonoBehaviour
 
     }
 
-    void ChangeWave(GameState gameState) // changes the wave if enemies have reached max amount of enemies killed 
+    private void ChangeWave() // changes the wave if enemies have reached max amount of enemies killed 
     {
-        currentGameState = gameState;
+        int rand = Random.Range(EnemeyWaveAmount, EnemeyWaveAmount + 5);
+        EnemeyWaveAmount = rand;
 
         if (SpawnCooldown > 0.2) SpawnCooldown -= 0.4f;
         else SpawnCooldown = 0.2f;
@@ -138,19 +162,19 @@ public class WaveManager : MonoBehaviour
 
     void ChangeWavetype() // introduces new enemy types to enchance diffuculty.
     {
-        if (waveIndex == ChangeWaveTypeIndex && waveIndex < EnemyPrefabs.Count) // if current equals wave type change wave, the new enemy types will be added 
+        if (EnemyTypeIndex == ChangeWaveTypeIndex && EnemyTypeIndex < EnemyPrefabs.Count) // if current equals wave type change wave, the new enemy types will be added 
         {
-            CurrentEnemies = EnemyPrefabs[waveIndex].Enemies;
+            CurrentEnemies = EnemyPrefabs[EnemyTypeIndex].Enemies;
             int rand = UnityEngine.Random.Range(ChangeWaveTypeIndex + 1, ChangeWaveTypeIndex + 4);
+
+            EnemyTypeIndex++;
             ChangeWaveTypeIndex = rand; // random sets wave type variable to create unprediability when enemy types are added 
         }
-
-        waveIndex++;
 
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (currentGameState != GameState.Ongoing) return;
 
@@ -168,89 +192,70 @@ public class WaveManager : MonoBehaviour
         }
 
         counter += Time.deltaTime;
-        if (counter <= SpawnCooldown) return;
+        if (counter < SpawnCooldown) return;
 
-        int random = UnityEngine.Random.Range(0, EnemiesToSpawn.Count);
-        GameObject Enemy = EnemiesToSpawn[random];
-
-        FindSpawnCoordinatesforEnemy(Enemy);
-
-        Transform EnemySettlementTarget = currentSettlements[0];
-
-        for (int i = 0; i < currentSettlements.Count; i++)
-        {
-            float distanceA = Vector3.Distance(Enemy.transform.position, EnemySettlementTarget.position);
-            float distanceB = Vector3.Distance(Enemy.transform.position, currentSettlements[i].position);
-
-            if (distanceA > distanceB)
-            {
-                EnemySettlementTarget = currentSettlements[i];
-            }
-
-        }
-
-        if (Enemy.TryGetComponent(out BaseEnemy enemy))
-        {
-            enemy.InstatiateTarget(EnemySettlementTarget);
-        }
+        if (EnemiesToSpawn == null) return;
 
         counter = 0f;
+        EnemeyWaveAmount--;
+
+        GameObject Enemy = EnemiesToSpawn[Random.Range(0, EnemiesToSpawn.Count)];
+
+        GameObject spawnedEnemy = FindSpawnCoordinatesforEnemy(Enemy);
+        if (spawnedEnemy == null) return;
+
+        Transform nearestSettlement = NearestSettlement(spawnedEnemy.transform.position);
+
+        if (nearestSettlement != null && spawnedEnemy.TryGetComponent(out BaseEnemy enemy))
+        {
+            enemy.Initialise(nearestSettlement);
+        }
 
     }
 
-    private void FindSpawnCoordinatesforEnemy(GameObject enemy)
+    private Transform NearestSettlement(Vector3 position)
+    {
+        Transform nearest = null;
+        float shortestDistanceSqr = Mathf.Infinity;
+
+        for (int i = 0; i < currentSettlements.Count; i++)
+        {
+            if (currentSettlements[i] == null) continue;
+
+            float distanceSqr = (position - currentSettlements[i].position).sqrMagnitude;
+            if (distanceSqr < shortestDistanceSqr)
+            {
+                shortestDistanceSqr = distanceSqr;
+                nearest = currentSettlements[i];
+            }
+        }
+
+        return nearest;
+    }
+
+    private GameObject FindSpawnCoordinatesforEnemy(GameObject enemy)
     {
         bool canSpawn = false;
         Vector3 SpawnPos = new Vector3();
         int safetyNet = 0;
 
-        while (!canSpawn)
+        while (!canSpawn && safetyNet < 50)
         {
-            float SpawnPointX = Random.Range(MaxX, MinX);
+            float SpawnPointX = Random.Range(MinX, MaxX);
             float SpawnPointY = Random.Range(MinY, MaxY);
 
-            SpawnPos = new Vector3(SpawnPointX, SpawnPointY, 0);
-            canSpawn = PreventOverlap(SpawnPos);
-
+            SpawnPos = new Vector3(SpawnPointX, SpawnPointY, 0f);
+            canSpawn = !Physics2D.OverlapCircle(SpawnPos, radius, targetLayers);
             safetyNet++;
-
-            if (safetyNet > 50)
-            {
-                Debug.Log("could not find suitable spaw point");
-                break;
-            }
         }
 
-        Instantiate(enemy, SpawnPos, Quaternion.identity);
-    }
-
-    private bool PreventOverlap(Vector3 SpawnPos)
-    {
-        colliders = Physics.OverlapSphere(transform.position, radius, layerMask);
-
-        for (int i = 0; i < colliders.Length; i++)
+        if (!canSpawn)
         {
-            Vector3 CentrePoint = colliders[i].bounds.center;
-            float width = colliders[i].bounds.extents.x;
-            float heigth = colliders[i].bounds.extents.y;
-
-            float leftExtent = CentrePoint.x - width;
-            float rightExtent = CentrePoint.x + width;
-            float lowerExtent = CentrePoint.y - heigth;
-            float upperExtent = CentrePoint.y + heigth;
-
-            if (SpawnPos.x >= leftExtent && SpawnPos.x <= rightExtent)
-            {
-                if (SpawnPos.z >= lowerExtent && SpawnPos.z >= upperExtent)
-                {
-                    return false;
-                }
-            }
-
+            Debug.Log("could not find suitable spaw point");
+            return null;
         }
 
-        return true;
-
+        return Instantiate(enemy, SpawnPos, Quaternion.identity);
     }
 
 }

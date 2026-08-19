@@ -13,6 +13,27 @@ public class GameManager : MonoBehaviour
 
     private int currentEnemiesKilld = 0;
 
+    private void OnEnable()
+    {
+        EventBus.Subscribe<GameManagerEvent>(retrieveData);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe<GameManagerEvent>(retrieveData);
+    }
+
+    private void retrieveData(GameManagerEvent data)
+    {
+        setGameState(data.gameState);
+    }
+
+    void Start()
+    {
+        EventBus.Act(new GameStateEvent(GameState.StartWave));
+        setGameState(GameState.Ongoing);
+    }
+
     private void TowerCounter()
     {
         TowerAmount--;
@@ -31,9 +52,6 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Success: break;
             case GameState.Failure: break;
-            case GameState.EndedWave: break;
-            case GameState.StartWave: break;
-            case GameState.Ongoing: break;
         }
     }
     private void Update()
@@ -51,7 +69,7 @@ public class GameManager : MonoBehaviour
             TotalEnemiesInWave += 4;
             waveIndex++;
 
-            setGameState(GameState.StartWave);
+            setGameState(GameState.Upgrades);
 
         }
     }
