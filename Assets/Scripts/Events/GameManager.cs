@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        EventBus.Act(new NumUIEvent(UIevents.Bases, TowerAmount));
+        EventBus.Act(new NumUIEvent(UIevents.Waves, waveIndex));
+        
         EventBus.Act(new GameStateEvent(GameState.StartWave));
         setGameState(GameState.Ongoing);
     }
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour
     private void TowerCounter()
     {
         TowerAmount--;
+        EventBus.Act(new NumUIEvent(UIevents.Bases, TowerAmount));
 
         if (TowerAmount <= 0)
         {

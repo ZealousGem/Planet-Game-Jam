@@ -90,6 +90,10 @@ public class WaveManager : MonoBehaviour
         float currentTime = 5f;
         int lastLoggedSecond = -1;
 
+        yield return new WaitForSeconds(0.3f);
+        EventBus.Act(new PopUpEvent(UIevents.WaveStart, "Starting Wave"));
+        yield return new WaitForSeconds(0.8f);
+
         while (currentTime >= 1)
         {
 
@@ -97,9 +101,10 @@ public class WaveManager : MonoBehaviour
 
             int currentSecond = Mathf.CeilToInt(currentTime);
 
-            if (currentTime != lastLoggedSecond && currentSecond >= 1)
+            if (currentSecond != lastLoggedSecond)
             {
                 lastLoggedSecond = currentSecond;
+                EventBus.Act(new PopUpEvent(UIevents.WaveStart, lastLoggedSecond.ToString()));
                 string annouceText = " New Wave Starting in " + currentTime.ToString("F0");
                 Debug.Log(annouceText);
             }
@@ -111,6 +116,11 @@ public class WaveManager : MonoBehaviour
         {
             ChangeWave();
         }
+        
+        yield return new WaitForSeconds(1f);
+        EventBus.Act(new PopUpEvent(UIevents.WaveStart, "Alien Creatues Have Spawned"));
+        yield return new WaitForSeconds(0.8f);
+        EventBus.Act(new PopUpEvent(UIevents.WaveStart, ""));
 
         currentGameState = GameState.Ongoing;
 

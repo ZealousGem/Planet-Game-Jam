@@ -53,8 +53,13 @@ public class UIManager : MonoBehaviour
     {
         switch (uIevents)
         {
-            case UIevents.WaveStart: break;
+            case UIevents.WaveStart: setWaveCounter(Text); break;
             case UIevents.Tower: break;
         }
+    }
+
+    private void setWaveCounter(string text)
+    {
+        StartWaveCounter.text = text;
     }
 }
