@@ -60,15 +60,15 @@ public class MoveTowards : IStrategy
 
         var target = EnemyLocation;
 
-        Vector3 targetPositionXOnly = new Vector3(target.position.x, entity.position.y, entity.position.z);
+        Vector3 targetPositionXYOnly = new Vector3(target.position.x, target.position.y, entity.position.z);
 
         entity.position = Vector2.MoveTowards(
         entity.position,
-        targetPositionXOnly,
+        targetPositionXYOnly,
         PatrolSpeed * Time.deltaTime
     );
 
-        Vector2 direction = ((Vector2)targetPositionXOnly - (Vector2)entity.position).normalized;
+        Vector2 direction = ((Vector2)targetPositionXYOnly - (Vector2)entity.position).normalized;
 
         float facingDirection = direction.x < 0 ? 1f : -1f;
 
@@ -80,5 +80,72 @@ public class MoveTowards : IStrategy
 
         return Node.Status.Running;
 
+    }
+
+
+}
+
+public class AttackSettlement : IStrategy
+{
+    readonly Func<bool> checkAttackHit;
+    readonly float attackCooldown;
+    private float lastAttackTime;
+    private Animator ani;
+    public AttackSettlement(Animator ani, Func<bool> checkAttackHit = null, float attackCooldown = 1.0f)
+    {
+        this.checkAttackHit = checkAttackHit;
+        this.attackCooldown = attackCooldown;
+        this.ani = ani;
+    }
+
+    public Node.Status Process()
+    {
+        if (ani == null) return Node.Status.Failure;
+
+        if (checkAttackHit != null && !checkAttackHit())
+        {
+            // hitbox.enabled = false;
+            return Node.Status.Failure;
+        }
+
+        if (Time.time >= lastAttackTime + attackCooldown)
+        {
+
+            ani.SetBool("Attack", true);
+            lastAttackTime = Time.time;
+        }
+
+        return Node.Status.Running;
+    }
+
+    public void Reset()
+    {
+        if (ani == null) return;
+        ani.SetBool("Attack", false);
+        lastAttackTime = 0f;
+    }
+}
+
+public class DeathAnimation : IStrategy
+{
+    readonly Func<bool> isDead;
+    private Animator ani;
+    public DeathAnimation(Animator ani, Func<bool> isDead = null)
+    {
+        this.ani = ani;
+    }
+
+    public Node.Status Process()
+    {
+        if (ani == null) return Node.Status.Failure;
+
+        if (isDead())
+        {
+
+            ani.SetBool("Dead", true);
+
+        }
+
+        return Node.Status.Running;
     }
 }

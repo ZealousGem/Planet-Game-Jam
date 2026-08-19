@@ -3,13 +3,20 @@ using UnityEngine;
 public class BaseEnemy : MonoBehaviour
 {
 
-    private Transform Target;
+    [SerializeField] protected Transform Target;
+    [SerializeField] private float EnemyHealth = 100f;
+    [SerializeField] private LayerMask targetLayerMask;
+    [SerializeField] protected Animator animator;
     public float Speed;
     protected float attackRange = 0.5f;
-    protected bool EnemyFound = false;
+    protected bool SettleMentFound = false;
     protected BehaviourTree tree;
     private bool isReady = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    protected virtual void Awake()
+    {
+        SetUpTree();
+    }
     protected virtual void SetUpTree()
     {
 
@@ -27,8 +34,31 @@ public class BaseEnemy : MonoBehaviour
         tree.AddChild(actions);
     }
 
-    protected virtual void BasicEnemyAI(PriortySelector actions) { }
+    protected virtual void BasicEnemyAI(PriortySelector actions)
+    {
+        Sequence DeathSequnce = new Sequence("Death Logic", 100);
 
+        bool HasEnemyDied()
+        {
+            if (EnemyHealth <= 0)
+            {
+                EnemyHealth = 0;
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+
+        }
+
+        DeathSequnce.AddChild(new Leaf("IsEnemyClose", new Condition(HasEnemyDied)));
+        DeathSequnce.AddChild(new Leaf("AttackEnemy", new DeathAnimation(animator, HasEnemyDied)));
+        actions.AddChild(DeathSequnce);
+    }
+
+    public void InstatiateTarget(Transform transform) => Target = transform;
     // Update is called once per frame
-    void Update() { if (!isReady) return; tree.Process(); }
+    private void Update() { if (!isReady) return; tree.Process(); }
 }
