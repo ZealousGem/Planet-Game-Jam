@@ -40,9 +40,9 @@ public class MoveTowards : IStrategy
 
     readonly Transform entity;
     readonly float PatrolSpeed;
-    Transform EnemyLocation;
+    Func<Transform> EnemyLocation;
 
-    public MoveTowards(Transform entity, Transform enemyLoc, float PatrolSpeed = 2f)
+    public MoveTowards(Transform entity, Func<Transform> enemyLoc, float PatrolSpeed = 2f)
     {
         this.entity = entity;
         EnemyLocation = enemyLoc;
@@ -56,9 +56,9 @@ public class MoveTowards : IStrategy
         if (entity == null || EnemyLocation == null)
             return Node.Status.Failure;
 
-        if (EnemyLocation == null) return Node.Status.Success;
+        Transform target = EnemyLocation?.Invoke();
 
-        var target = EnemyLocation;
+        if (target == null) return Node.Status.Failure;
 
         Vector3 targetPositionXYOnly = new Vector3(target.position.x, target.position.y, entity.position.z);
 
@@ -98,9 +98,21 @@ public class AttackSettlement : IStrategy
         this.ani = ani;
     }
 
+    private Func<Settlement> transform;
+    public AttackSettlement(Func<bool> checkAttackHit = null, Func<Settlement> transform = null, float attackCooldown = 1.0f)
+    {
+        this.checkAttackHit = checkAttackHit;
+        this.attackCooldown = attackCooldown;
+        this.transform = transform;
+    }
+
     public Node.Status Process()
     {
-        if (ani == null) return Node.Status.Failure;
+        // if (ani == null) return Node.Status.Failure;
+
+        Settlement settlement = transform?.Invoke();
+
+        if (settlement == null) return Node.Status.Failure;
 
         if (checkAttackHit != null && !checkAttackHit())
         {
@@ -110,8 +122,8 @@ public class AttackSettlement : IStrategy
 
         if (Time.time >= lastAttackTime + attackCooldown)
         {
-
-            ani.SetBool("Attack", true);
+            settlement.DamageTower(30);
+            //  ani.SetBool("Attack", true);
             lastAttackTime = Time.time;
         }
 

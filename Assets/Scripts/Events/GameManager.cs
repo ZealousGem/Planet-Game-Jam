@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         if (currentEnemiesKilld >= TotalEnemiesInWave)
         {
             currentEnemiesKilld = 0;
-            int rand = Random.Range(TotalEnemiesInWave, TotalEnemiesInWave + 5);
+            int rand = Random.Range(TotalEnemiesInWave + 1, TotalEnemiesInWave + 5);
             TotalEnemiesInWave = rand;
 
             waveIndex++;

@@ -13,7 +13,7 @@ public class BaseEnemy : MonoBehaviour
 
     [Header("HealthUI")]
     [SerializeField] protected Image HealthBar;
-    protected Transform Target;
+    [SerializeField] protected Transform Target;
 
     [Header("Stats")]
     public float EnemyHealth = 100f;
@@ -59,7 +59,7 @@ public class BaseEnemy : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        tree.Reset();
+        tree?.Reset();
         Destroy(gameObject);
     }
 
@@ -80,32 +80,27 @@ public class BaseEnemy : MonoBehaviour
 
     protected virtual void SetUpTree()
     {
-        isReady = true;
-
         tree = new BehaviourTree("Enemy");
         PriortySelector actions = new PriortySelector("Enemy Logic");
-
-        BasicEnemyAI(actions);
 
         Sequence MovingToTarget = new Sequence("finding target", 50);
 
         bool SettlementisSeen()
         {
             if (Target != null) return true;
-
-            // Target is null, attempt to re-acquire right here
-            FindNewSettlement();
-
-            return Target != null; // Returns true if a new target was successfully found
+            return FindNewSettlement(); // Returns true if a new target was successfully found
         }
 
         MovingToTarget.AddChild(new Leaf("IsEnemyClose", new Condition(SettlementisSeen)));
-        MovingToTarget.AddChild(new Leaf("Patrol", new MoveTowards(transform, Target, Speed)));
+        MovingToTarget.AddChild(new Leaf("Patrol", new MoveTowards(transform, () => Target, Speed)));
         // Leaf Patrol = new Leaf("Patrol", new MoveTowards(transform, Target, 6f));
         actions.AddChild(MovingToTarget);
 
+        BasicEnemyAI(actions);
+
         // actions.AddChild(actions);
         tree.AddChild(actions);
+        isReady = true;
     }
 
     protected virtual void BasicEnemyAI(PriortySelector actions)
@@ -131,16 +126,21 @@ public class BaseEnemy : MonoBehaviour
         actions.AddChild(DeathSequnce);
     }
 
-    private void FindNewSettlement()
+    private bool FindNewSettlement()
     {
         // Layer mask search (e.g., Physics2D.OverlapCircleAll or Physics.OverlapSphere)
-        Collider[] settlements = Physics.OverlapSphere(transform.position, 100f, targetLayerMask);
+        Collider2D[] settlements = Physics2D.OverlapCircleAll(transform.position, 100f, targetLayerMask);
 
         if (settlements.Length > 0)
         {
             // Pick the closest settlement or first found
             Target = settlements[0].transform;
+            return true;
         }
+
+        Target = null;
+        return false;
+
     }
 
     private void InstatiateTarget(Transform transform) => Target = transform;
