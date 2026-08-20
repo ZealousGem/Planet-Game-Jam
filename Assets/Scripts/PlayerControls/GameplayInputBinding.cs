@@ -19,12 +19,27 @@ public class GameplayInputBinding : MonoBehaviour
     {
         map.Enable();
         EnableActions();
+        EventBus.Subscribe<GameStateEvent>(RetrieveData);
     }
 
     protected virtual void OnDisable()
     {
         DisableActions();
         map.Disable();
+        EventBus.Unsubscribe<GameStateEvent>(RetrieveData);
+    }
+
+    private void RetrieveData(GameStateEvent state)
+    {
+        if (state.gameState == GameState.Ongoing || state.gameState == GameState.StartWave)
+        {
+            setControls(true);
+        }
+
+        else
+        {
+            setControls(false);
+        }
     }
 
     // disables the map and the methods

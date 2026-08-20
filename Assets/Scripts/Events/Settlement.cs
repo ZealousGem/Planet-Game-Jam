@@ -36,6 +36,8 @@ public class Settlement : MonoBehaviour
             Health = 0;
             HealthBar.gameObject.SetActive(false);
 
+            EventBus.Act(new SettlementCounterEvent(1));
+
             StartCoroutine(BlowUpSettlement());
         }
     }

@@ -74,4 +74,14 @@ public class EnemiesKilledEvent : EventData
     }
 }
 
+public class SettlementCounterEvent : EventData
+{
+    public int num;
+
+    public SettlementCounterEvent(int num)
+    {
+        this.num = num;
+    }
+}
+
 

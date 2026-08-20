@@ -855,7 +855,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
   currentSettlements:
   - {fileID: 398045191}
-  - {fileID: 0}
+  - {fileID: 1344581910}
+  - {fileID: 1013832516}
   MinX: -29.5
   MaxX: 39.5
   MinY: -19.5
@@ -947,6 +948,11 @@ MonoBehaviour:
   EnemiesLeftText: {fileID: 1029896572}
   StartWaveCounter: {fileID: 1886983554}
   TowerNotifyUI: {fileID: 0}
+--- !u!4 &1013832516 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4644827971478365676, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
+  m_PrefabInstance: {fileID: 2081204367}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1029896570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,6 +1227,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144215262}
   m_CullTransparentMesh: 1
+--- !u!4 &1344581910 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4644827971478365676, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
+  m_PrefabInstance: {fileID: 87048985}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1507377775
 GameObject:
   m_ObjectHideFlags: 0

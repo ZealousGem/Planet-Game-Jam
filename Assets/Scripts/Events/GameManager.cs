@@ -20,18 +20,22 @@ public class GameManager : MonoBehaviour
     {
         EventBus.Subscribe<GameManagerEvent>(retrieveData);
         EventBus.Subscribe<EnemiesKilledEvent>(RetrieveData);
+        EventBus.Subscribe<SettlementCounterEvent>(RetrieveData);
     }
 
     private void OnDisable()
     {
         EventBus.Unsubscribe<GameManagerEvent>(retrieveData);
         EventBus.Unsubscribe<EnemiesKilledEvent>(RetrieveData);
+        EventBus.Unsubscribe<SettlementCounterEvent>(RetrieveData);
     }
 
     private void retrieveData(GameManagerEvent data)
     {
         setGameState(data.gameState);
     }
+
+    private void RetrieveData(SettlementCounterEvent data) => TowerCounter();
 
     private void RetrieveData(EnemiesKilledEvent data) => IncreaseBotKilledCount(data.num);
 
@@ -61,11 +65,13 @@ public class GameManager : MonoBehaviour
 
         switch (currentGamestate)
         {
-            case GameState.Success: break;
+            case GameState.Success: EventBus.Act(new GameStateEvent(GameState.Success)); break;
+
             case GameState.StartWave:
                 EventBus.Act(new WaveStateEvent(GameState.StartWave, TotalEnemiesInWave));
                 EventBus.Act(new NumUIEvent(UIevents.EnemiesLeft, TotalEnemiesInWave)); break;
-            case GameState.Failure: break;
+
+            case GameState.Failure: EventBus.Act(new GameStateEvent(GameState.Failure)); break;
         }
     }
     private void Update()
