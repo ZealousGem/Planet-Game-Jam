@@ -19,15 +19,19 @@ public class BaseEnemy : MonoBehaviour
     public float EnemyHealth = 100f;
     public float Speed = 5f;
     public float Damage = 60f;
-    protected float attackRange = 0.5f;
+
+    [Header("Attack Range")]
+    [SerializeField] protected float attackRange = 0.5f;
     protected bool SettleMentFound = false;
     protected BehaviourTree tree;
     private bool isReady = false;
+    private bool isDead = false;
 
     private float MaxEnemyHealth = 0;
 
     public void DamageEnemy(float Damage)
     {
+        if (isDead) return;
         EnemyHealth -= Damage;
 
         if (!HealthBar.gameObject.activeSelf && EnemyHealth != 0)
@@ -39,8 +43,11 @@ public class BaseEnemy : MonoBehaviour
 
         if (EnemyHealth <= 0)
         {
+            isDead = true;
             EnemyHealth = 0;
             HealthBar.gameObject.SetActive(false);
+
+            EventBus.Act(new EnemiesKilledEvent(1));
             StartCoroutine(KillEnemy());
 
         }
@@ -93,7 +100,7 @@ public class BaseEnemy : MonoBehaviour
         }
 
         MovingToTarget.AddChild(new Leaf("IsEnemyClose", new Condition(SettlementisSeen)));
-        MovingToTarget.AddChild(new Leaf("Patrol", new MoveTowards(transform, Target, 6f)));
+        MovingToTarget.AddChild(new Leaf("Patrol", new MoveTowards(transform, Target, Speed)));
         // Leaf Patrol = new Leaf("Patrol", new MoveTowards(transform, Target, 6f));
         actions.AddChild(MovingToTarget);
 

@@ -75,6 +75,7 @@ public class WaveManager : MonoBehaviour
         {
             case WaveStateEvent wave:
                 EnemeyWaveAmount = wave.WaveAmount;
+                Debug.Log(EnemeyWaveAmount);
                 StartCoroutine(StartWave()); break;
             default: currentGameState = data.gameState; break;
         }
@@ -108,8 +109,8 @@ public class WaveManager : MonoBehaviour
             {
                 lastLoggedSecond = currentSecond;
                 EventBus.Act(new PopUpEvent(UIevents.WaveStart, lastLoggedSecond.ToString()));
-                string annouceText = " New Wave Starting in " + currentTime.ToString("F0");
-                Debug.Log(annouceText);
+                // string annouceText = " New Wave Starting in " + currentTime.ToString("F0");
+                // Debug.Log(annouceText);
             }
 
             yield return null;
@@ -168,9 +169,6 @@ public class WaveManager : MonoBehaviour
 
     private void ChangeWave() // changes the wave if enemies have reached max amount of enemies killed 
     {
-        int rand = Random.Range(EnemeyWaveAmount, EnemeyWaveAmount + 5);
-        EnemeyWaveAmount = rand;
-
         if (SpawnCooldown > 0.2) SpawnCooldown -= 0.4f;
         else SpawnCooldown = 0.2f;
 

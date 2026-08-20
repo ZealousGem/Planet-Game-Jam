@@ -64,3 +64,13 @@ public class PopUpEvent : UIEvent
     }
 }
 
+public class EnemiesKilledEvent : EventData
+{
+    public int num;
+
+    public EnemiesKilledEvent(int num)
+    {
+        this.num = num;
+    }
+}
+

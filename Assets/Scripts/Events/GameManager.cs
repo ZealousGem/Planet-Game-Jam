@@ -19,17 +19,21 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         EventBus.Subscribe<GameManagerEvent>(retrieveData);
+        EventBus.Subscribe<EnemiesKilledEvent>(RetrieveData);
     }
 
     private void OnDisable()
     {
         EventBus.Unsubscribe<GameManagerEvent>(retrieveData);
+        EventBus.Unsubscribe<EnemiesKilledEvent>(RetrieveData);
     }
 
     private void retrieveData(GameManagerEvent data)
     {
         setGameState(data.gameState);
     }
+
+    private void RetrieveData(EnemiesKilledEvent data) => IncreaseBotKilledCount(data.num);
 
     void Start()
     {
@@ -69,7 +73,7 @@ public class GameManager : MonoBehaviour
         if (currentGamestate == GameState.Ongoing || currentGamestate == GameState.EndedWave) ingameTimer += Time.deltaTime;
     }
 
-    void IncreaseBotKilledCount(int num)  // increases the enemiy kill count everytime enemy has been killed 
+    private void IncreaseBotKilledCount(int num)  // increases the enemiy kill count everytime enemy has been killed 
     {
         currentEnemiesKilld += num;
         EventBus.Act(new NumUIEvent(UIevents.EnemiesLeft, TotalEnemiesInWave - currentEnemiesKilld));
@@ -77,7 +81,8 @@ public class GameManager : MonoBehaviour
         if (currentEnemiesKilld >= TotalEnemiesInWave)
         {
             currentEnemiesKilld = 0;
-            TotalEnemiesInWave += 4;
+            int rand = Random.Range(TotalEnemiesInWave, TotalEnemiesInWave + 5);
+            TotalEnemiesInWave = rand;
 
             waveIndex++;
             EventBus.Act(new NumUIEvent(UIevents.Waves, waveIndex));
