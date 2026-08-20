@@ -46,10 +46,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private LayerMask targetLayers;
     [SerializeField] private float radius = 5f;
 
-    [Header("Amount of Enemies that should be spawned at the first wave")]
-    [SerializeField] private int EnemeyWaveAmount = 10;
-
     // private variables
+    private int EnemeyWaveAmount = 10;
     private List<EnemyWeights> Enemies = new List<EnemyWeights>();
     private List<GameObject> CurrentEnemies = new List<GameObject>();
     private List<GameObject> EnemiesToSpawn = new List<GameObject>();
@@ -72,10 +70,15 @@ public class WaveManager : MonoBehaviour
 
     private void RetrieveData(GameStateEvent data)
     {
-        if (data.gameState == GameState.StartWave)
+
+        switch (data)
         {
-            StartCoroutine(StartWave());
+            case WaveStateEvent wave:
+                EnemeyWaveAmount = wave.WaveAmount;
+                StartCoroutine(StartWave()); break;
+            default: currentGameState = data.gameState; break;
         }
+
     }
 
     private void initialiseFirstWave()
@@ -116,7 +119,7 @@ public class WaveManager : MonoBehaviour
         {
             ChangeWave();
         }
-        
+
         yield return new WaitForSeconds(1f);
         EventBus.Act(new PopUpEvent(UIevents.WaveStart, "Alien Creatues Have Spawned"));
         yield return new WaitForSeconds(0.8f);

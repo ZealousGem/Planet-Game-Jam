@@ -18,6 +18,16 @@ public class GameStateEvent : EventData
 
 }
 
+public class WaveStateEvent : GameStateEvent
+{
+    public int WaveAmount;
+
+    public WaveStateEvent(GameState gameState, int WaveAmount) : base(gameState)
+    {
+        this.WaveAmount = WaveAmount;
+    }
+}
+
 public class GameManagerEvent : EventData
 {
     public GameState gameState;

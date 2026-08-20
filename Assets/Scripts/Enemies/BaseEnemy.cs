@@ -1,12 +1,21 @@
-using System;
+
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseEnemy : MonoBehaviour
 {
-
-    [SerializeField] protected Transform Target;
+    [Header("LayerMask of Target")]
     [SerializeField] private LayerMask targetLayerMask;
+
+    [Header("Animations")]
     [SerializeField] protected Animator animator;
+
+    [Header("HealthUI")]
+    [SerializeField] protected Image HealthBar;
+    protected Transform Target;
+
+    [Header("Stats")]
     public float EnemyHealth = 100f;
     public float Speed = 5f;
     public float Damage = 60f;
@@ -14,15 +23,50 @@ public class BaseEnemy : MonoBehaviour
     protected bool SettleMentFound = false;
     protected BehaviourTree tree;
     private bool isReady = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    // protected virtual void Awake()
-    // {
-    //     SetUpTree();
-    // }
+
+    private float MaxEnemyHealth = 0;
+
+    public void DamageEnemy(float Damage)
+    {
+        EnemyHealth -= Damage;
+
+        if (!HealthBar.gameObject.activeSelf && EnemyHealth != 0)
+        {
+            HealthBar.gameObject.SetActive(true);
+        }
+
+        HealthBar.fillAmount = EnemyHealth / MaxEnemyHealth;
+
+        if (EnemyHealth <= 0)
+        {
+            EnemyHealth = 0;
+            HealthBar.gameObject.SetActive(false);
+            StartCoroutine(KillEnemy());
+
+        }
+    }
+
+    public IEnumerator KillEnemy()
+    {
+        isReady = false;
+
+        yield return new WaitForSeconds(1f);
+
+        tree.Reset();
+        Destroy(gameObject);
+    }
 
     public virtual void Initialise(Transform targetTransform)
     {
         InstatiateTarget(targetTransform);
+
+        MaxEnemyHealth = EnemyHealth;
+        if (HealthBar != null)
+        {
+            HealthBar.gameObject.SetActive(false);
+            HealthBar.fillAmount = EnemyHealth / MaxEnemyHealth;
+        }
+
         SetUpTree();
 
     }
@@ -65,7 +109,6 @@ public class BaseEnemy : MonoBehaviour
         {
             if (EnemyHealth <= 0)
             {
-                EnemyHealth = 0;
                 return true;
             }
 

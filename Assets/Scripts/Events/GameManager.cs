@@ -7,9 +7,12 @@ public class GameManager : MonoBehaviour
     private GameState currentGamestate = GameState.Start;
     private float ingameTimer = 0f;
     private int waveIndex = 1;
+
+    [Header("Amount od Settlements in scene")]
     [SerializeField] private int TowerAmount = 0;
 
-    private int TotalEnemiesInWave = 0;
+    [Header("Amount of Enemies in Each Wave")]
+    [SerializeField] private int TotalEnemiesInWave = 10;
 
     private int currentEnemiesKilld = 0;
 
@@ -32,8 +35,8 @@ public class GameManager : MonoBehaviour
     {
         EventBus.Act(new NumUIEvent(UIevents.Bases, TowerAmount));
         EventBus.Act(new NumUIEvent(UIevents.Waves, waveIndex));
-        
-        EventBus.Act(new GameStateEvent(GameState.StartWave));
+
+        setGameState(GameState.StartWave);
         setGameState(GameState.Ongoing);
     }
 
@@ -55,6 +58,9 @@ public class GameManager : MonoBehaviour
         switch (currentGamestate)
         {
             case GameState.Success: break;
+            case GameState.StartWave:
+                EventBus.Act(new WaveStateEvent(GameState.StartWave, TotalEnemiesInWave));
+                EventBus.Act(new NumUIEvent(UIevents.EnemiesLeft, TotalEnemiesInWave)); break;
             case GameState.Failure: break;
         }
     }
@@ -66,14 +72,17 @@ public class GameManager : MonoBehaviour
     void IncreaseBotKilledCount(int num)  // increases the enemiy kill count everytime enemy has been killed 
     {
         currentEnemiesKilld += num;
+        EventBus.Act(new NumUIEvent(UIevents.EnemiesLeft, TotalEnemiesInWave - currentEnemiesKilld));
 
         if (currentEnemiesKilld >= TotalEnemiesInWave)
         {
             currentEnemiesKilld = 0;
             TotalEnemiesInWave += 4;
-            waveIndex++;
 
-            setGameState(GameState.Upgrades);
+            waveIndex++;
+            EventBus.Act(new NumUIEvent(UIevents.Waves, waveIndex));
+
+            setGameState(GameState.StartWave);
 
         }
     }

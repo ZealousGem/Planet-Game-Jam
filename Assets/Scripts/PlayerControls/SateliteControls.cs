@@ -55,15 +55,15 @@ public class SateliteControls : PlayerMovement
 
         if (bulletCounter <= 0)
         {
-             
+
             StartCoroutine(ReloadSpeed(reloadSpeed, Maxbulletcount));
-           
+
         }
 
         else
         {
             StartCoroutine(ReloadSpeed(recoilSpeed));
-            
+
         }
 
     }
@@ -86,7 +86,7 @@ public class SateliteControls : PlayerMovement
     private IEnumerator ReloadSpeed(float counter, int bullets)
     {
         float cur = 0f;
-        Debug.Log("reloading");
+        //   Debug.Log("reloading");
         EventBus.Act(new NumUIEvent(UIevents.NoAmmo, bulletCounter));
 
         while (cur < counter)
@@ -97,6 +97,6 @@ public class SateliteControls : PlayerMovement
         bulletCounter = bullets;
         EventBus.Act(new NumUIEvent(UIevents.Ammo, bulletCounter));
         reloading = false;
-        Debug.Log("ready");
+        // Debug.Log("ready");
     }
 }
