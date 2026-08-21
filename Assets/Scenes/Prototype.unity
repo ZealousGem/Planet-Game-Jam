@@ -2131,6 +2131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Settlement (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1088732794702847831, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.019
+      objectReference: {fileID: 0}
     - target: {fileID: 1692676560808071607, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
       propertyPath: m_text
       value: 3
@@ -2178,6 +2182,14 @@ PrefabInstance:
     - target: {fileID: 4644827971478365676, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931804999379373850, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.445
+      objectReference: {fileID: 0}
+    - target: {fileID: 8992141517143716637, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.145
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2313,6 +2325,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Settlement
       objectReference: {fileID: 0}
+    - target: {fileID: 1503302612891759088, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
+      propertyPath: m_Size.x
+      value: 2.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 1503302612891759088, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
+      propertyPath: m_Size.y
+      value: 0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 1503302612891759088, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
+      propertyPath: m_Offset.x
+      value: 1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 1503302612891759088, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.21
+      objectReference: {fileID: 0}
     - target: {fileID: 2575368192792173124, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
       propertyPath: HealthBar
       value: 
@@ -2356,18 +2384,6 @@ PrefabInstance:
     - target: {fileID: 4644827971478365676, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537903438987887997, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
-      propertyPath: m_Name
-      value: NumUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 6559750701970878195, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8992141517143716637, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

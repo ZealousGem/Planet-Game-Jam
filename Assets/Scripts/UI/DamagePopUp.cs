@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DamagePopUp : MonoBehaviour
 {
-
     private TMP_Text textMesh;
 
     private void Awake()

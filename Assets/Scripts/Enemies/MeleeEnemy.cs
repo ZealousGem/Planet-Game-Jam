@@ -11,8 +11,16 @@ public class MeleeEnemy : BaseEnemy
         {
             if (Target == null) return false;
 
-            float distance = Vector3.Distance(transform.position, Target.position);
-            return distance <= attackRange;
+            if (Target.TryGetComponent(out Collider2D settlementCollider))
+            {
+             // Gets the point on the Settlement collider closest to the enemy center
+             Vector3 closestPoint = settlementCollider.ClosestPoint(transform.position);
+             float distance = Vector3.Distance(transform.position, closestPoint);
+             return distance <= attackRange;
+            }
+            
+    // Fallback if no collider is attached
+           return Vector3.Distance(transform.position, Target.position) <= attackRange;
         }
 
         Settlement testSettleMent()

@@ -32,6 +32,8 @@ public class SateliteControls : PlayerMovement
         bulletCounter = Maxbulletcount;
     }
 
+    private void Start() => EventBus.Act(new NumUIEvent(UIevents.Ammo, bulletCounter));
+   
     // uses shooting bullet input uses pooling system to spawn or relocate object
     protected override void ShootBullet(InputAction.CallbackContext value)
     {
