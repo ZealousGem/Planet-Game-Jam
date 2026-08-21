@@ -122,7 +122,7 @@ public class WaveManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
-        EventBus.Act(new PopUpEvent(UIevents.WaveStart, "Protect The Kelper Settlements"));
+        EventBus.Act(new PopUpEvent(UIevents.WaveStart, "Protect The Bases"));
         yield return new WaitForSeconds(0.8f);
         EventBus.Act(new PopUpEvent(UIevents.WaveStart, ""));
 

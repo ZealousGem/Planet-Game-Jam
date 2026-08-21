@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        EventBus.Act(new PopUpEvent(UIevents.Tower, "Space Settlement Destroyed"));
+        EventBus.Act(new PopUpEvent(UIevents.Tower, "Base Destroyed"));
     }
 
     private void setGameState(GameState gameState)

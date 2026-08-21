@@ -138,7 +138,23 @@ public class BaseEnemy : MonoBehaviour
         if (settlements.Length > 0)
         {
             // Pick the closest settlement or first found
-            Target = settlements[0].transform;
+        Transform nearest = null;
+        float shortestDistanceSqr = Mathf.Infinity;
+
+         for (int i = 0; i < settlements.Length; i++)
+         {
+            if (settlements[i] == null) continue;
+
+            float distanceSqr = (transform.position - settlements[i].gameObject.transform.position).sqrMagnitude;
+            if (distanceSqr < shortestDistanceSqr)
+            {
+                shortestDistanceSqr = distanceSqr;
+                nearest = settlements[i].gameObject.transform;
+            }
+         }
+            
+            if(nearest == null) return false;
+            Target = nearest;
             return true;
         }
 

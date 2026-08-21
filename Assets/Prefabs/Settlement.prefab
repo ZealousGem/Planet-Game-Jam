@@ -50,6 +50,7 @@ MonoBehaviour:
   Health: 300
   HealthBar: {fileID: 0}
   debris: {fileID: 0}
+  PopUpUI: {fileID: 1080138394770557067, guid: 89464c203c7da8049a829a7aa66e764e, type: 3}
 --- !u!61 &1503302612891759088
 BoxCollider2D:
   m_ObjectHideFlags: 0

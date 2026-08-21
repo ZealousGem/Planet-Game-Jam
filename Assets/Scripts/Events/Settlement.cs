@@ -5,9 +5,15 @@ using UnityEngine.UI;
 public class Settlement : MonoBehaviour
 {
 
+    [Header("Health Properties")]
     [SerializeField] private float Health;
     [SerializeField] private Image HealthBar;
+
+    [Header("DebrisPrefab")]
     [SerializeField] private GameObject debris;
+
+    [Header("DamagePopUp")]
+    [SerializeField] private GameObject PopUpUI;
     private bool isDead = false;
     private float maxHealth;
 
@@ -18,6 +24,7 @@ public class Settlement : MonoBehaviour
         Health -= Damage;
   
         HealthBar.fillAmount = Health / maxHealth;
+        DamagePopUp.CreatePopUp(PopUpUI, transform, (int)Damage);
 
         if (Health <= 0)
         {

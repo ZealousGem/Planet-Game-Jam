@@ -705,7 +705,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1235157760440815033, guid: 0f44333310783b04a971d6f0e560b29b, type: 3}
       propertyPath: m_text
-      value: Settlement 2
+      value: Base 2
       objectReference: {fileID: 0}
     - target: {fileID: 3892242158048778993, guid: 0f44333310783b04a971d6f0e560b29b, type: 3}
       propertyPath: m_Pivot.x
@@ -1229,7 +1229,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1235157760440815033, guid: 0f44333310783b04a971d6f0e560b29b, type: 3}
       propertyPath: m_text
-      value: Settlement 3
+      value: Base 3
       objectReference: {fileID: 0}
     - target: {fileID: 3892242158048778993, guid: 0f44333310783b04a971d6f0e560b29b, type: 3}
       propertyPath: m_Pivot.x
@@ -2194,7 +2194,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1235157760440815033, guid: 0f44333310783b04a971d6f0e560b29b, type: 3}
       propertyPath: m_text
-      value: Settlement 1
+      value: Base 1
       objectReference: {fileID: 0}
     - target: {fileID: 3892242158048778993, guid: 0f44333310783b04a971d6f0e560b29b, type: 3}
       propertyPath: m_Pivot.x
