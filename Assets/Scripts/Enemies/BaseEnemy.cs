@@ -22,11 +22,14 @@ public class BaseEnemy : MonoBehaviour
 
     [Header("Attack Range")]
     [SerializeField] protected float attackRange = 0.5f;
+
+    [Header("PopUpUI")]
+    [SerializeField] private GameObject PopUp;
+
     protected bool SettleMentFound = false;
     protected BehaviourTree tree;
     private bool isReady = false;
     private bool isDead = false;
-
     private float MaxEnemyHealth = 0;
 
     public void DamageEnemy(float Damage)
@@ -40,6 +43,7 @@ public class BaseEnemy : MonoBehaviour
         }
 
         HealthBar.fillAmount = EnemyHealth / MaxEnemyHealth;
+        DamagePopUp.CreatePopUp(PopUp, transform, (int)Damage);
 
         if (EnemyHealth <= 0)
         {

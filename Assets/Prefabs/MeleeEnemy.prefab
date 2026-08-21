@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7852314193571336827}
   - component: {fileID: 8514523468275296110}
   - component: {fileID: 2461852436523405195}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: HealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 4904734794982680814}
   - component: {fileID: 3802382563425862725}
   - component: {fileID: 9036434553166721595}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: MeleeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,10 +156,12 @@ MonoBehaviour:
     m_Bits: 8
   animator: {fileID: 0}
   HealthBar: {fileID: 5077774110035555746}
+  Target: {fileID: 0}
   EnemyHealth: 100
   Speed: 1
   Damage: 60
   attackRange: 2
+  PopUp: {fileID: 8557289201308949757, guid: 2d2679ede15907744b37210b519bfd09, type: 3}
 --- !u!212 &4904734794982680814
 SpriteRenderer:
   serializedVersion: 3
@@ -304,7 +306,7 @@ GameObject:
   - component: {fileID: 2447219237310622240}
   - component: {fileID: 3398281312622415818}
   - component: {fileID: 5077774110035555746}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: EnemyHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

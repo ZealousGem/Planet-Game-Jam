@@ -220,9 +220,12 @@ MonoBehaviour:
     m_Bits: 8
   animator: {fileID: 0}
   HealthBar: {fileID: 7932551032229269958}
+  Target: {fileID: 0}
   EnemyHealth: 100
   Speed: 8
   Damage: 60
+  attackRange: 0.5
+  PopUp: {fileID: 8557289201308949757, guid: 2d2679ede15907744b37210b519bfd09, type: 3}
 --- !u!50 &7591651175383845534
 Rigidbody2D:
   serializedVersion: 5
