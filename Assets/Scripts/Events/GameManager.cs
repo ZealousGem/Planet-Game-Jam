@@ -56,7 +56,10 @@ public class GameManager : MonoBehaviour
         if (TowerAmount <= 0)
         {
             setGameState(GameState.Failure);
+            return;
         }
+
+        EventBus.Act(new PopUpEvent(UIevents.Tower, "Space Settlement Destroyed"));
     }
 
     private void setGameState(GameState gameState)

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -43,7 +44,7 @@ public class UIManager : MonoBehaviour
             case UIevents.Bases: setNumText(BasesLeftText, num, "Bases Left "); break;
             case UIevents.Ammo: setNumText(AmmoText, num, "Ammo "); break;
             case UIevents.NoAmmo: setNumText(AmmoText, "Reloading..."); break;
-            case UIevents.EnemiesLeft: setNumText(EnemiesLeftText, num, "Creatures Left: "); break;
+            case UIevents.EnemiesLeft: setNumText(EnemiesLeftText, num, "Aliens Left: "); break;
         }
     }
 
@@ -54,12 +55,19 @@ public class UIManager : MonoBehaviour
         switch (uIevents)
         {
             case UIevents.WaveStart: setWaveCounter(Text); break;
-            case UIevents.Tower: break;
+            case UIevents.Tower: StartCoroutine(TowerDestoryedEvent(Text));break;
         }
     }
 
     private void setWaveCounter(string text)
     {
         StartWaveCounter.text = text;
+    }
+
+    private IEnumerator TowerDestoryedEvent(string text)
+    {
+        TowerNotifyUI.text = text;
+        yield return new WaitForSeconds(0.6f);
+         TowerNotifyUI.text = "";
     }
 }
