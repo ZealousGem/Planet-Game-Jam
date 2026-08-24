@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: d13d1bf5cbb27274db791026868ecf06
+guid: 2ad95efab11a49f44a2e0a18c57d33b7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4587819038592488346
-    second: Lvl1GruntAttackAnimation-Sheet_0
-  - first:
-      213: 6639177127432698190
-    second: Lvl1GruntAttackAnimation-Sheet_1
-  - first:
-      213: 4492208138744661081
-    second: Lvl1GruntAttackAnimation-Sheet_2
-  - first:
-      213: 7392390463801558251
-    second: Lvl1GruntAttackAnimation-Sheet_3
-  - first:
-      213: 6842875122584053040
-    second: Lvl1GruntAttackAnimation-Sheet_4
+      213: 4606014486160528288
+    second: Vegation1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -125,79 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lvl1GruntAttackAnimation-Sheet_0
+      name: Vegation1_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 0
-        width: 27
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 66cabe644eac450c0800000000000000
-      internalID: -4587819038592488346
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lvl1GruntAttackAnimation-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 0
-        width: 28
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e493689eb68132c50800000000000000
-      internalID: 6639177127432698190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lvl1GruntAttackAnimation-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 68
-        y: 0
-        width: 25
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9548efe5087875e30800000000000000
-      internalID: 4492208138744661081
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lvl1GruntAttackAnimation-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 96
+        x: 3
         y: 0
         width: 29
-        height: 31
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be480e3d5fb079660800000000000000
-      internalID: 7392390463801558251
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Lvl1GruntAttackAnimation-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 29
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 035eafb3ba6c6fe50800000000000000
-      internalID: 6842875122584053040
+      spriteID: 0a3d6ed75c9dbef30800000000000000
+      internalID: 4606014486160528288
       vertices: []
       indices: 
       edges: []
@@ -238,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -248,11 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Lvl1GruntAttackAnimation-Sheet_0: -4587819038592488346
-      Lvl1GruntAttackAnimation-Sheet_1: 6639177127432698190
-      Lvl1GruntAttackAnimation-Sheet_2: 4492208138744661081
-      Lvl1GruntAttackAnimation-Sheet_3: 7392390463801558251
-      Lvl1GruntAttackAnimation-Sheet_4: 6842875122584053040
+      Vegation1_0: 4606014486160528288
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

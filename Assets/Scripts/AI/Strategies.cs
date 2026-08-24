@@ -91,28 +91,29 @@ public class AttackSettlement : IStrategy
     readonly float attackCooldown;
     private float lastAttackTime;
     private Animator ani;
-    public AttackSettlement(Animator ani, Func<bool> checkAttackHit = null, float attackCooldown = 1.0f)
-    {
-        this.checkAttackHit = checkAttackHit;
-        this.attackCooldown = attackCooldown;
-        this.ani = ani;
-    }
+    // public AttackSettlement(Animator ani, Func<bool> checkAttackHit = null, float attackCooldown = 1.0f)
+    // {
+    //     this.checkAttackHit = checkAttackHit;
+    //     this.attackCooldown = attackCooldown;
+    //     this.ani = ani;
+    // }
 
     private Func<Settlement> transform;
-    public AttackSettlement(Func<bool> checkAttackHit = null, Func<Settlement> transform = null, float attackCooldown = 1.0f)
+    public AttackSettlement(Animator ani = null, Func<bool> checkAttackHit = null, Func<Settlement> transform = null, float attackCooldown = 1.0f)
     {
         this.checkAttackHit = checkAttackHit;
         this.attackCooldown = attackCooldown;
         this.transform = transform;
+        this.ani = ani;
     }
 
     public Node.Status Process()
     {
-        // if (ani == null) return Node.Status.Failure;
+        if (ani == null) return Node.Status.Failure;
 
         Settlement settlement = transform?.Invoke();
 
-        if (settlement == null) return Node.Status.Failure;
+        // if (settlement == null) return Node.Status.Failure;
 
         if (checkAttackHit != null && !checkAttackHit())
         {
@@ -122,8 +123,8 @@ public class AttackSettlement : IStrategy
 
         if (Time.time >= lastAttackTime + attackCooldown)
         {
-            settlement.DamageTower(30);
-            //  ani.SetBool("Attack", true);
+            //if (settlement != null) settlement.DamageTower(30);
+            ani.SetBool("Attack", true);
             lastAttackTime = Time.time;
         }
 

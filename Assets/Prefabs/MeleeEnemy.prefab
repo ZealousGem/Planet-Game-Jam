@@ -157,10 +157,9 @@ MonoBehaviour:
     m_Bits: 8
   animator: {fileID: 3986977342111757305}
   HealthBar: {fileID: 5077774110035555746}
-  Target: {fileID: 0}
   EnemyHealth: 100
   Speed: 1
-  Damage: 60
+  Damage: 30
   attackRange: 1
   PopUp: {fileID: 8557289201308949757, guid: 2d2679ede15907744b37210b519bfd09, type: 3}
 --- !u!212 &4904734794982680814
@@ -213,7 +212,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -15718883632460776, guid: 317e1e9b3a9e8d248a80ecf84f4d88bb, type: 3}
-  m_Color: {r: 0.7735849, g: 0.7692061, b: 0.7692061, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -261,7 +260,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.27, y: 0.32}
+    oldSize: {x: 0.84375, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

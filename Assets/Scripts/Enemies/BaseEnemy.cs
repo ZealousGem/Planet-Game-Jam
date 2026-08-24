@@ -13,7 +13,7 @@ public class BaseEnemy : MonoBehaviour
 
     [Header("HealthUI")]
     [SerializeField] protected Image HealthBar;
-    [SerializeField] protected Transform Target;
+    protected Transform Target;
 
     [Header("Stats")]
     public float EnemyHealth = 100f;
@@ -138,22 +138,22 @@ public class BaseEnemy : MonoBehaviour
         if (settlements.Length > 0)
         {
             // Pick the closest settlement or first found
-        Transform nearest = null;
-        float shortestDistanceSqr = Mathf.Infinity;
+            Transform nearest = null;
+            float shortestDistanceSqr = Mathf.Infinity;
 
-         for (int i = 0; i < settlements.Length; i++)
-         {
-            if (settlements[i] == null) continue;
-
-            float distanceSqr = (transform.position - settlements[i].gameObject.transform.position).sqrMagnitude;
-            if (distanceSqr < shortestDistanceSqr)
+            for (int i = 0; i < settlements.Length; i++)
             {
-                shortestDistanceSqr = distanceSqr;
-                nearest = settlements[i].gameObject.transform;
+                if (settlements[i] == null) continue;
+
+                float distanceSqr = (transform.position - settlements[i].gameObject.transform.position).sqrMagnitude;
+                if (distanceSqr < shortestDistanceSqr)
+                {
+                    shortestDistanceSqr = distanceSqr;
+                    nearest = settlements[i].gameObject.transform;
+                }
             }
-         }
-            
-            if(nearest == null) return false;
+
+            if (nearest == null) return false;
             Target = nearest;
             return true;
         }

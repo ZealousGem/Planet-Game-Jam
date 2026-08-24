@@ -14,22 +14,29 @@ public class Settlement : MonoBehaviour
 
     [Header("DamagePopUp")]
     [SerializeField] private GameObject PopUpUI;
+    private Coroutine HealthBarEffect;
     private bool isDead = false;
     private float maxHealth;
 
-    private void Awake()=> maxHealth = Health; 
+    private void Awake()
+    {
+        maxHealth = Health; if (HealthBar != null &&
+        HealthBar.gameObject.activeSelf) HealthBar.gameObject.SetActive(false);
+    }
     public void DamageTower(float Damage)
     {
         if (isDead) return;
         Health -= Damage;
-  
-        HealthBar.fillAmount = Health / maxHealth;
+
+        HealthBarLogic();
+
         DamagePopUp.CreatePopUp(PopUpUI, transform, (int)Damage);
 
         if (Health <= 0)
         {
             isDead = true;
 
+            if (HealthBarEffect != null) StopCoroutine(HealthBarEffect);
             Health = 0;
 
             Transform Parent = HealthBar.gameObject.transform.parent;
@@ -39,6 +46,30 @@ public class Settlement : MonoBehaviour
 
             StartCoroutine(BlowUpSettlement());
         }
+    }
+
+    private void HealthBarLogic()
+    {
+        if (HealthBarEffect == null)
+        {
+            HealthBarEffect = StartCoroutine(HealthBarTransition());
+        }
+
+        else
+        {
+            StopCoroutine(HealthBarEffect);
+            HealthBarEffect = StartCoroutine(HealthBarTransition());
+        }
+    }
+
+    private IEnumerator HealthBarTransition()
+    {
+        HealthBar.gameObject.SetActive(true);
+        HealthBar.fillAmount = Health / maxHealth;
+
+        yield return new WaitForSeconds(5f);
+
+        HealthBar.gameObject.SetActive(false);
     }
 
     private IEnumerator BlowUpSettlement()

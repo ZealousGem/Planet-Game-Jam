@@ -13,14 +13,14 @@ public class MeleeEnemy : BaseEnemy
 
             if (Target.TryGetComponent(out Collider2D settlementCollider))
             {
-             // Gets the point on the Settlement collider closest to the enemy center
-             Vector3 closestPoint = settlementCollider.ClosestPoint(transform.position);
-             float distance = Vector3.Distance(transform.position, closestPoint);
-             return distance <= attackRange;
+                // Gets the point on the Settlement collider closest to the enemy center
+                Vector3 closestPoint = settlementCollider.ClosestPoint(transform.position);
+                float distance = Vector3.Distance(transform.position, closestPoint);
+                return distance <= attackRange;
             }
-            
-    // Fallback if no collider is attached
-           return Vector3.Distance(transform.position, Target.position) <= attackRange;
+
+            // Fallback if no collider is attached
+            return Vector3.Distance(transform.position, Target.position) <= attackRange;
         }
 
         Settlement testSettleMent()
@@ -42,13 +42,13 @@ public class MeleeEnemy : BaseEnemy
 
         AttackSettlementSeq.AddChild(new Leaf("IsEnemyClose", new Condition(isSettlementRightInFrontOfMe)));
         // AttackSettlementSeq.AddChild(new Leaf("AttackEnemy", new AttackSettlement(animator, isSettlementRightInFrontOfMe)));
-        AttackSettlementSeq.AddChild(new Leaf("AttackEnemy", new AttackSettlement(isSettlementRightInFrontOfMe, testSettleMent)));
+        AttackSettlementSeq.AddChild(new Leaf("AttackEnemy", new AttackSettlement(animator, isSettlementRightInFrontOfMe, testSettleMent)));
         actions.AddChild(AttackSettlementSeq);
     }
 
     public void OnHitFrame()
     {
-        if (transform != null && Target.TryGetComponent(out Settlement settlement))
+        if (Target != null && Target.TryGetComponent(out Settlement settlement))
         {
             settlement.DamageTower(Damage);
         }
