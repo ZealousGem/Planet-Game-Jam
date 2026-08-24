@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 2829305123271562777}
   - component: {fileID: 965081597300969607}
   - component: {fileID: 9196111859248255275}
+  - component: {fileID: 5031371068295306383}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -237,3 +238,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5031371068295306383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2543376048113069692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d9ceaa084eb574db257919f6db4bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hitbox

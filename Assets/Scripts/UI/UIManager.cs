@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -55,19 +56,36 @@ public class UIManager : MonoBehaviour
         switch (uIevents)
         {
             case UIevents.WaveStart: setWaveCounter(Text); break;
-            case UIevents.Tower: StartCoroutine(TowerDestoryedEvent(Text));break;
+            case UIevents.Tower: StartCoroutine(TowerDestoryedEvent(Text)); break;
         }
     }
 
     private void setWaveCounter(string text)
     {
         StartWaveCounter.text = text;
+        if (string.IsNullOrEmpty(text))
+        {
+            StartWaveCounter.DOFade(0, 0.3f).OnComplete(() =>
+            {
+                StartWaveCounter.gameObject.SetActive(false);
+            });
+        }
+
+        else
+        {
+            StartWaveCounter.gameObject.SetActive(true);
+            StartWaveCounter.alpha = 1f;
+            StartWaveCounter.text = text;
+            DOTween.Punch(() => StartWaveCounter.transform.localScale, x => StartWaveCounter.transform.localScale = x, Vector3.one * 0.2f, 0.3f);
+        }
     }
 
     private IEnumerator TowerDestoryedEvent(string text)
     {
         TowerNotifyUI.text = text;
-        yield return new WaitForSeconds(0.6f);
-         TowerNotifyUI.text = "";
+        TowerNotifyUI.transform.DOPunchScale(Vector3.one * 0.2f, 0.5f, vibrato: 10, elasticity: 1f);
+
+        yield return new WaitForSeconds(0.5f);
+        TowerNotifyUI.DOFade(0, 0.3f).OnComplete(() => TowerNotifyUI.text = "");
     }
 }

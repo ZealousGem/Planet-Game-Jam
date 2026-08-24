@@ -11,6 +11,7 @@ public class Ammo : MonoBehaviour
     /// </summary>
     [SerializeField] private float lifeTime = 0.8f;
     [SerializeField] private float Damage = 45f;
+    private Collider2D collider2D;
     // bullet life span once active
     private GunPool pool;
 
@@ -18,6 +19,11 @@ public class Ammo : MonoBehaviour
     public void SetPool(GunPool poolRef)
     {
         pool = poolRef;
+    }
+
+    void Awake()
+    {
+        collider2D = GetComponent<Collider2D>();
     }
 
     // uses invoke to player life span if object has no collided with anything
@@ -47,6 +53,7 @@ public class Ammo : MonoBehaviour
     {
         if (pool != null)
         {
+            collider2D.enabled = false;
             pool.ReturnObject(gameObject);
         }
         else
@@ -54,4 +61,10 @@ public class Ammo : MonoBehaviour
             Destroy(gameObject); // Fallback safety if spawned without a pool
         }
     }
+
+    public void TurnOnCollider()
+    {
+        if (collider2D != null) collider2D.enabled = true;
+    }
+
 }
