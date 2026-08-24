@@ -19,6 +19,9 @@ public class SateliteControls : PlayerMovement
 
     [Header("Pool")]
     [SerializeField] private GunPool pool;
+
+    [Header("GunAnimation")]
+    [SerializeField] private Animator animator;
     private bool reloading = false;
 
     private int Maxbulletcount = 15;
@@ -33,7 +36,7 @@ public class SateliteControls : PlayerMovement
     }
 
     private void Start() => EventBus.Act(new NumUIEvent(UIevents.Ammo, bulletCounter));
-   
+
     // uses shooting bullet input uses pooling system to spawn or relocate object
     protected override void ShootBullet(InputAction.CallbackContext value)
     {
@@ -41,6 +44,8 @@ public class SateliteControls : PlayerMovement
 
         Vector3 spawnPosition = Nozzle.position;
         spawnPosition.z = 0f;
+
+        if (animator != null) animator.SetBool("Attack", true);
 
         pool.getObj(spawnPosition, transform.rotation);
 
@@ -73,6 +78,8 @@ public class SateliteControls : PlayerMovement
     // reload courtine stop player from shooting for a couple of seconds
     private IEnumerator ReloadSpeed(float counter)
     {
+        yield return new WaitForSeconds(0.1f);
+        if (animator != null) animator.SetBool("Attack", false);
         float cur = 0f;
         EventBus.Act(new NumUIEvent(UIevents.Ammo, bulletCounter));
 
@@ -87,6 +94,9 @@ public class SateliteControls : PlayerMovement
 
     private IEnumerator ReloadSpeed(float counter, int bullets)
     {
+        yield return new WaitForSeconds(0.1f);
+        if (animator != null) animator.SetBool("Attack", false);
+
         float cur = 0f;
         //   Debug.Log("reloading");
         EventBus.Act(new NumUIEvent(UIevents.NoAmmo, bulletCounter));

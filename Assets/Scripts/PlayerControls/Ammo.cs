@@ -38,7 +38,7 @@ public class Ammo : MonoBehaviour
         {
             // Deal damage here if needed
             enemy.DamageEnemy(Damage);
-            ReturnToPool();
+            // ReturnToPool();
         }
     }
 
