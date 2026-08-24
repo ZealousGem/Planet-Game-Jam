@@ -4,7 +4,7 @@ public class MeleeEnemy : BaseEnemy
 {
     protected override void BasicEnemyAI(PriortySelector actions)
     {
-        base.BasicEnemyAI(actions);
+        //base.BasicEnemyAI(actions);
         Sequence AttackSettlementSeq = new Sequence("Attack Enemy", 80);
 
         bool isSettlementRightInFrontOfMe()

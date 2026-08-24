@@ -51,6 +51,8 @@ public class BaseEnemy : MonoBehaviour
             EnemyHealth = 0;
             HealthBar.gameObject.SetActive(false);
 
+            if (animator != null) animator.SetTrigger("Death");
+
             EventBus.Act(new EnemiesKilledEvent(1));
             StartCoroutine(KillEnemy());
 
@@ -109,25 +111,6 @@ public class BaseEnemy : MonoBehaviour
 
     protected virtual void BasicEnemyAI(PriortySelector actions)
     {
-        Sequence DeathSequnce = new Sequence("Death Logic", 100);
-
-        bool HasEnemyDied()
-        {
-            if (EnemyHealth <= 0)
-            {
-                return true;
-            }
-
-            else
-            {
-                return false;
-            }
-
-        }
-
-        DeathSequnce.AddChild(new Leaf("IsEnemyClose", new Condition(HasEnemyDied)));
-        DeathSequnce.AddChild(new Leaf("AttackEnemy", new DeathAnimation(animator, HasEnemyDied)));
-        actions.AddChild(DeathSequnce);
     }
 
     private bool FindNewSettlement()

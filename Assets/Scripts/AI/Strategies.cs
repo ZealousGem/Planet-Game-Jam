@@ -146,16 +146,18 @@ public class DeathAnimation : IStrategy
     public DeathAnimation(Animator ani, Func<bool> isDead = null)
     {
         this.ani = ani;
+        this.isDead = isDead;
     }
 
     public Node.Status Process()
     {
         if (ani == null) return Node.Status.Failure;
+        Debug.Log("death");
 
         if (isDead())
         {
-
-            ani.SetBool("Dead", true);
+            Debug.Log("death");
+            ani.SetTrigger("Death");
 
         }
 
