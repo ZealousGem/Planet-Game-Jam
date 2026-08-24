@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: Wave1Test
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWave
   Enemies:
-  - {fileID: 699520959810963553, guid: 16c18b9c873654444a64487f9aca7b6a, type: 3}
-  - {fileID: 699520959810963553, guid: 16c18b9c873654444a64487f9aca7b6a, type: 3}
-  - {fileID: 699520959810963553, guid: 16c18b9c873654444a64487f9aca7b6a, type: 3}
+  - {fileID: 803993358523090250, guid: cc561082a000b6341a58e8c9a37b371e, type: 3}
