@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b978848be4f52c42a9c35db018374e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Settlement
-  Health: 300
+  Health: 500
   HealthBar: {fileID: 1934607208346721205}
   builind: {fileID: 4426479920934581417}
   debris: {fileID: 6694470362664292502}

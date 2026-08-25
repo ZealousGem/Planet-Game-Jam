@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWave
   Enemies:
   - {fileID: 7673352324752712537, guid: 18cca41fc2a74bf42bfc113127889925, type: 3}
-  - {fileID: 1714212582653233687, guid: b9b5a9d8066ee644aa4a747b8d23b476, type: 3}
+  - {fileID: 3408199710639866981, guid: 8f95a8bcae62c174d966db532a6d8ce3, type: 3}
   - {fileID: 6111365756836844716, guid: 51482b1e61c22614ca8db2bc6dfbff52, type: 3}
   - {fileID: 7673352324752712537, guid: 18cca41fc2a74bf42bfc113127889925, type: 3}
   - {fileID: 7673352324752712537, guid: 18cca41fc2a74bf42bfc113127889925, type: 3}

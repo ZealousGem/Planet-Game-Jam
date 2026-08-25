@@ -120,7 +120,7 @@ public class BaseEnemy : MonoBehaviour
 
         if (settlements.Length > 0)
         {
-            // Pick the closest settlement or first found
+            //    Debug.Log("in");            // Pick the closest settlement or first found
             Transform nearest = null;
             float shortestDistanceSqr = Mathf.Infinity;
 
@@ -142,6 +142,7 @@ public class BaseEnemy : MonoBehaviour
         }
 
         Target = null;
+        // Debug.Log("no new settlement found");
         return false;
 
     }
