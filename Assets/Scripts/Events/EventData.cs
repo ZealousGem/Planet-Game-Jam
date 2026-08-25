@@ -84,4 +84,14 @@ public class SettlementCounterEvent : EventData
     }
 }
 
+public class UpgradeEvent : EventData
+{
+    public int num;
+
+    public UpgradeEvent(int num)
+    {
+        this.num = num;
+    }
+}
+
 
