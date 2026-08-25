@@ -9,6 +9,9 @@ public class Settlement : MonoBehaviour
     [SerializeField] private float Health;
     [SerializeField] private Image HealthBar;
 
+    [Header("Building")]
+    [SerializeField] private SpriteRenderer builind;
+
     [Header("DebrisPrefab")]
     [SerializeField] private GameObject debris;
 
@@ -74,7 +77,9 @@ public class Settlement : MonoBehaviour
 
     private IEnumerator BlowUpSettlement()
     {
-        yield return null;
+        builind.enabled = false;
+        debris.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 }

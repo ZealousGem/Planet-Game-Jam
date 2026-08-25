@@ -4,63 +4,78 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System;
 using DG.Tweening;
+using UnityEngine.InputSystem;
+using UnityEditor;
 
 public class EndGameMenu : BaseMainMenu
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    public Button MenuButton; 
+    public Button RestartButton;
+    public Button MenuButton;
     public TMP_Text Title;
     public TMP_Text Reason;
-    void Start()
-    {
-        
-    }
+
     protected override void Awake()
     {
         base.Awake();
-        BindObject(MenuButton.gameObject);
+        BindObject(RestartButton.gameObject);
     }
 
-     protected override void retrieveData(GameStateEvent data)
+    protected override void retrieveData(GameStateEvent data)
     {
         setButtonClickLinster(data.gameState);
 
         //if (data.gameState == GameState.Success)EvokeMenu(data.Title, data.Reason, data.Amount);
-         if (data.gameState == GameState.Failure) EvokeMenu("Game Over", "You Failed to Protect The Bases");
-        
+        if (data.gameState == GameState.Failure) EvokeMenu("Game Over", "You Failed to Protect The Bases");
+
     }
 
     private void setButtonClickLinster(GameState gameState)
     {
-        if(MenuButton == null) return;
+        if (RestartButton == null) return;
 
-        TMP_Text ButtonText = MenuButton.gameObject.GetComponentInChildren<TMP_Text>();
+        TMP_Text ButtonText = RestartButton.gameObject.GetComponentInChildren<TMP_Text>();
 
-        if(ButtonText == null) return;
+        if (ButtonText == null) return;
 
         switch (gameState)
         {
-          //  case GameState.Success: MenuButton.onClick.AddListener(NextLevel); ButtonText.text = NextLevelText; break;
-            case GameState.Failure: MenuButton.onClick.AddListener(ResetLevel); ButtonText.text = "Restart"; break;
+            //  case GameState.Success: MenuButton.onClick.AddListener(NextLevel); ButtonText.text = NextLevelText; break;
+            case GameState.Failure:
+                RestartButton.onClick.AddListener(ResetLevel); ButtonText.text = "Restart";
+                MenuButton.onClick.AddListener(QuitGame);
+                break;
         }
     }
 
     private void ResetLevel()
-    {        
+    {
         DOTween.KillAll();
-       // SoundPlayer.StopAllInGameSounds();
+        // SoundPlayer.StopAllInGameSounds();
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
 
-     protected void EvokeMenu(string title, string reason, float tim = 1f)
+    private void QuitToMenu()
+    {
+        DOTween.KillAll();
+    }
+
+    private void QuitGame()
+    {
+        DOTween.KillAll();
+        Application.Quit();
+    }
+
+    protected void EvokeMenu(string title, string reason, float tim = 1f)
     {
         Menu(true);
         Title.text = title;
 
         TimeSpan timeSpan = TimeSpan.FromSeconds(tim);
-        
-        Reason.text = reason + "Your time was " + timeSpan.ToString(@"mm\:ss\:fff");
+
+        Reason.text = reason /*+ " Your time was "
+        + timeSpan.ToString(@"mm\:ss\:fff")*/;
     }
 }
