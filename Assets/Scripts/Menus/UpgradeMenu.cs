@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -72,8 +73,21 @@ public class UpgradeMenu : BaseMainMenu
 
             currentUpgrades.Add(Upgrades[index]);
 
-            Menu(true);
         }
+
+        for (int i = 0; i < Buttons.Count;)
+        {
+            TMP_Text textMesh = Buttons[i].gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
+            TMP_Text textMesh2 = Buttons[i].gameObject.transform.GetChild(1).GetComponent<TMP_Text>();
+
+            if(textMesh != null && textMesh2 != null)
+            {
+                textMesh.text = currentUpgrades[i].Title;
+                textMesh2.text = currentUpgrades[i].Description;
+            }
+        }
+
+        Menu(true);
     }
 
     private void invokeUpgrade(int index)
