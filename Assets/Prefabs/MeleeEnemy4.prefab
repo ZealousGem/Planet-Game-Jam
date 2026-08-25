@@ -54,9 +54,9 @@ MonoBehaviour:
     m_Bits: 8
   animator: {fileID: 3155612008298648794}
   HealthBar: {fileID: 2822762443262201474}
-  EnemyHealth: 100
-  Speed: 1
-  Damage: 30
+  EnemyHealth: 80
+  Speed: 3
+  Damage: 14
   attackRange: 1
   PopUp: {fileID: 8557289201308949757, guid: 2d2679ede15907744b37210b519bfd09, type: 3}
 --- !u!212 &2420296665830968961

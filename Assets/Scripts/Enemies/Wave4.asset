@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e132a3d56b98694f921c9c6a3f37128, type: 3}
-  m_Name: Wave1Test
+  m_Name: Wave4
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWave
   Enemies:
-  - {fileID: 699520959810963553, guid: 16c18b9c873654444a64487f9aca7b6a, type: 3}
-  - {fileID: 699520959810963553, guid: 16c18b9c873654444a64487f9aca7b6a, type: 3}
+  - {fileID: 7673352324752712537, guid: 18cca41fc2a74bf42bfc113127889925, type: 3}
   - {fileID: 1714212582653233687, guid: b9b5a9d8066ee644aa4a747b8d23b476, type: 3}
-  - {fileID: 1714212582653233687, guid: b9b5a9d8066ee644aa4a747b8d23b476, type: 3}
+  - {fileID: 6111365756836844716, guid: 51482b1e61c22614ca8db2bc6dfbff52, type: 3}
+  - {fileID: 7673352324752712537, guid: 18cca41fc2a74bf42bfc113127889925, type: 3}
+  - {fileID: 7673352324752712537, guid: 18cca41fc2a74bf42bfc113127889925, type: 3}

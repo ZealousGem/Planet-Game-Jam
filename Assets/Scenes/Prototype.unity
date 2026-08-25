@@ -8158,13 +8158,13 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -9491,6 +9491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 619394802}
   - component: {fileID: 619394801}
+  - component: {fileID: 619394803}
   m_Layer: 0
   m_Name: Global Light 2D
   m_TagString: Untagged
@@ -9519,7 +9520,7 @@ MonoBehaviour:
     rid: 5860744835591307264
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2.16
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -9586,6 +9587,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &619394803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619394800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 3f9215ea0144899419cfbc0957140d3f, type: 2}
 --- !u!1 &620927343
 GameObject:
   m_ObjectHideFlags: 0
@@ -9627,6 +9645,10 @@ MonoBehaviour:
   SpawnCooldown: 5
   EnemyPrefabs:
   - {fileID: 11400000, guid: 94b2a6ca7734f284fa506eba6c700645, type: 2}
+  - {fileID: 11400000, guid: a2ce9a8d8411ccf4b9f943f36ad47b0f, type: 2}
+  - {fileID: 11400000, guid: ba49ef2ce476bb34caa84a4c0b7e808e, type: 2}
+  - {fileID: 11400000, guid: 212645c7e53ad7c439d30ab83c4a1d1b, type: 2}
+  - {fileID: 11400000, guid: 4eb57e3eefc32be4889c28a3a01ce221, type: 2}
   targetLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -22195,7 +22217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6830188, g: 0.6231178, b: 0.5709006, a: 1}
+  m_Color: {r: 0.94716984, g: 0.8715367, b: 0.8059879, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -26202,9 +26224,9 @@ MonoBehaviour:
     rid: -2
   m_SelectionSources:
     rid: 5860744994053947477
-  m_FalloffIntensity: 0.472
+  m_FalloffIntensity: 0.536
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2.41
+  m_Intensity: 2.43
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -26217,8 +26239,8 @@ MonoBehaviour:
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
   m_ShadowsEnabled: 1
-  m_ShadowIntensity: 0.727
-  m_ShadowSoftness: 0.882
+  m_ShadowIntensity: 0.707
+  m_ShadowSoftness: 0.977
   m_ShadowSoftnessFalloffIntensity: 0.214
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
@@ -26276,7 +26298,7 @@ Transform:
   m_GameObject: {fileID: 1919499353}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.3, y: 11.9, z: 0}
+  m_LocalPosition: {x: -10.3, y: 3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

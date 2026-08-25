@@ -53,6 +53,7 @@ public class WaveManager : MonoBehaviour
     private List<GameObject> EnemiesToSpawn = new List<GameObject>();
     private GameState currentGameState = GameState.Start;
     private int ChangeWaveTypeIndex = 0;
+    private int currentWaveTypeIndex = 1;
     private int EnemyTypeIndex = 1;
     private float counter = 0;
 
@@ -178,7 +179,9 @@ public class WaveManager : MonoBehaviour
 
     void ChangeWavetype() // introduces new enemy types to enchance diffuculty.
     {
-        if (EnemyTypeIndex == ChangeWaveTypeIndex && EnemyTypeIndex < EnemyPrefabs.Count) // if current equals wave type change wave, the new enemy types will be added 
+        currentWaveTypeIndex++;
+
+        if (currentWaveTypeIndex == ChangeWaveTypeIndex && EnemyTypeIndex < EnemyPrefabs.Count) // if current equals wave type change wave, the new enemy types will be added 
         {
             CurrentEnemies = EnemyPrefabs[EnemyTypeIndex].Enemies;
             int rand = UnityEngine.Random.Range(ChangeWaveTypeIndex + 1, ChangeWaveTypeIndex + 4);
