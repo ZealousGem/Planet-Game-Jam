@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
         EventBus.Act(new NumUIEvent(UIevents.Bases, TowerAmount));
         EventBus.Act(new NumUIEvent(UIevents.Waves, waveIndex));
 
-        setGameState(GameState.StartWave);
-        setGameState(GameState.Ongoing);
+        // setGameState(GameState.StartWave);
+        // setGameState(GameState.Ongoing);
     }
 
     private void TowerCounter()

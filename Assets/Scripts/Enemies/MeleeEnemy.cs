@@ -46,7 +46,7 @@ public class MeleeEnemy : BaseEnemy
         actions.AddChild(AttackSettlementSeq);
     }
 
-    public void OnHitFrame()
+    public virtual void OnHitFrame()
     {
         if (Target != null && Target.TryGetComponent(out Settlement settlement))
         {

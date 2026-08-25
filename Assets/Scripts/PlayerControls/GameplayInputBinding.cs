@@ -42,6 +42,7 @@ public class GameplayInputBinding : MonoBehaviour
         }
     }
 
+    protected virtual void Start() => setControls(false);
     // disables the map and the methods
     protected void setControls(bool state)
     {
@@ -54,6 +55,8 @@ public class GameplayInputBinding : MonoBehaviour
         {
             map.Disable();
         }
+
+        Debug.Log(state);
     }
 
     // enables all playercontroller input actions once scene starts
