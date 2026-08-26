@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AmmoUpgrade
   Title: Increase Ammo
   Description: Weapons Ammo by 5 to shoot extra Bullets
-  image: {fileID: 0}
+  image: {fileID: -500656407038457628, guid: 65b0fd1b42d360446baf92e9e676e77f, type: 3}
   Ammo: 5

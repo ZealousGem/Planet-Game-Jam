@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraZoomUpgrade
   Title: Increase Zoom Upgrade
   Description: Increase ZoomOut lens to see more of map
-  image: {fileID: 0}
+  image: {fileID: 6245046233476944347, guid: 93464c33d53fa36428d595c916db6702, type: 3}
   Speed: 0.3

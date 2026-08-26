@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageUpgrade
   Title: Increase Missile Damage
   Description: Increase Damage of Missile by 5
-  image: {fileID: 0}
+  image: {fileID: 2635703866311618781, guid: 9780512f90e10d542850df532b808f4f, type: 3}
   Damage: 5

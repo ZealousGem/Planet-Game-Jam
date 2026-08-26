@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RestoreAtowerHealthUpgrade
   Title: Heal Base
   Description: Heals the lowest base in the map
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 1831a0fa9cdf4d94d96fccfb18e34515, type: 3}
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 8

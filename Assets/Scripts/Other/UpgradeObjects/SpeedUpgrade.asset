@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedUpgrade
   Title: Increase Speed
   Description: Increase Movement of the Satelitte Camera by 1
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 648edee774ec8f043b6ecba36bf714ef, type: 3}
   Speed: 1
