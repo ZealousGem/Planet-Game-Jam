@@ -56,7 +56,7 @@ public class GameplayInputBinding : MonoBehaviour
             map.Disable();
         }
 
-        Debug.Log(state);
+        //        Debug.Log(state);
     }
 
     // enables all playercontroller input actions once scene starts
@@ -65,7 +65,6 @@ public class GameplayInputBinding : MonoBehaviour
         map.PlayerController.Movement.performed += MoveSatelite;
         map.PlayerController.Movement.canceled += CancelMovment;
         map.PlayerController.Shoot.performed += ShootBullet;
-        map.PlayerController.Pause.performed += PauseGame;
         map.PlayerController.ZoomIn.performed += ZoomCamera;
         map.PlayerController.ZoomOut.performed += ZoomOutCamera;
     }
@@ -76,7 +75,6 @@ public class GameplayInputBinding : MonoBehaviour
         map.PlayerController.Movement.performed -= MoveSatelite;
         map.PlayerController.Movement.canceled -= CancelMovment;
         map.PlayerController.Shoot.performed -= ShootBullet;
-        map.PlayerController.Pause.performed -= PauseGame;
         map.PlayerController.ZoomIn.performed -= ZoomCamera;
         map.PlayerController.ZoomOut.performed -= ZoomOutCamera;
     }
@@ -91,5 +89,4 @@ public class GameplayInputBinding : MonoBehaviour
 
     protected virtual void ShootBullet(InputAction.CallbackContext value) { }
 
-    protected virtual void PauseGame(InputAction.CallbackContext value) { }
 }

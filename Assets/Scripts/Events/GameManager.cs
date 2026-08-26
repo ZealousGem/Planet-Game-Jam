@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum GameState { Start, Ongoing, Success, Failure, EndedWave, StartWave, Upgrades }
+public enum GameState { Start, Ongoing, Success, Failure, EndedWave, StartWave, Upgrades, Paused }
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     private void RetrieveData(SpawnTowerEvent data)
     {
         TowerAmount = TowerAmount + data.counter;
+        EventBus.Act(new NumUIEvent(UIevents.Bases, TowerAmount));
     }
 
     private void retrieveData(GameManagerEvent data)

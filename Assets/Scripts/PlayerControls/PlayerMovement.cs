@@ -118,11 +118,6 @@ public class PlayerMovement : GameplayInputBinding
 
         ZoomEffect = StartCoroutine(ZoomCameraEffect(currentZoomSize));
     }
-    // pauses game and disable player controls, might remove it and ad this action in the pause menu  
-    protected override void PauseGame(InputAction.CallbackContext value)
-    {
-
-    }
 
     // moves the camera
 
