@@ -62,11 +62,18 @@ public class WaveManager : MonoBehaviour
     void OnEnable()
     {
         EventBus.Subscribe<GameStateEvent>(RetrieveData);
+        EventBus.Subscribe<SpawnTowerEvent>(RetrieveData);
     }
 
     void OnDisable()
     {
         EventBus.Unsubscribe<GameStateEvent>(RetrieveData);
+        EventBus.Unsubscribe<SpawnTowerEvent>(RetrieveData);
+    }
+
+    private void RetrieveData(SpawnTowerEvent data)
+    {
+        currentSettlements.Add(data.Tower.transform);
     }
 
     private void RetrieveData(GameStateEvent data)

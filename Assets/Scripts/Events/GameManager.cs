@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         EventBus.Subscribe<GameManagerEvent>(retrieveData);
         EventBus.Subscribe<EnemiesKilledEvent>(RetrieveData);
         EventBus.Subscribe<SettlementCounterEvent>(RetrieveData);
+        EventBus.Subscribe<SpawnTowerEvent>(RetrieveData);
     }
 
     private void OnDisable()
@@ -28,6 +29,12 @@ public class GameManager : MonoBehaviour
         EventBus.Unsubscribe<GameManagerEvent>(retrieveData);
         EventBus.Unsubscribe<EnemiesKilledEvent>(RetrieveData);
         EventBus.Unsubscribe<SettlementCounterEvent>(RetrieveData);
+        EventBus.Unsubscribe<SpawnTowerEvent>(RetrieveData);
+    }
+
+    private void RetrieveData(SpawnTowerEvent data)
+    {
+        TowerAmount = TowerAmount + data.counter;
     }
 
     private void retrieveData(GameManagerEvent data)

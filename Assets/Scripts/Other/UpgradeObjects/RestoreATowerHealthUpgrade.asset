@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56728773f6d3d8b48b35aa452ee26fd4, type: 3}
   m_Name: RestoreATowerHealthUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::RestoreAtowerHealthUpgrade
-  Title: 
-  Description: 
+  Title: Heal Base
+  Description: Heals the lowest base in the map
   image: {fileID: 0}
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  detectionRadius: 100

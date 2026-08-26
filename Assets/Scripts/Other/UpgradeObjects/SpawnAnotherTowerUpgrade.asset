@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc1f5a13865af949a5f9ac798bfa6f7, type: 3}
   m_Name: SpawnAnotherTowerUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::SpawnAnotherTowerUpgrade
-  Title: 
-  Description: 
+  Title: Spawn a Base
+  Description: Spawn a Base in the map so you can survive longer
   image: {fileID: 0}
-  scale: 0
+  SettlementPrefab: {fileID: 589169677230292431, guid: 9013a5c53c718f345ab7dcea0a0a0733, type: 3}
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  detectionRadius: 100
+  MinX: -10
+  MaxX: 70
+  MinY: -30
+  MaxY: 40

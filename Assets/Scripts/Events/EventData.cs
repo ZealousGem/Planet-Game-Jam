@@ -160,9 +160,12 @@ public class SpawnTowerEvent : UpgradeEvent
 {
     public GameObject Tower;
     public int counter = 1;
-    public SpawnTowerEvent(GameObject Damage)
+
+    public int NumCounter = 0;
+    public SpawnTowerEvent(int num, GameObject _Tower)
     {
-        this.Tower = Damage;
+        NumCounter = num;
+        Tower = _Tower;
     }
 }
 

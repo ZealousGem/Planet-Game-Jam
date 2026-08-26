@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2de4ea470292fa47807401a89ca319f, type: 3}
   m_Name: RestoreAllTowersHealth
   m_EditorClassIdentifier: Assembly-CSharp::RestoreAllTowersHealth
-  Title: 
-  Description: 
+  Title: Heal All Bases
+  Description: All Bases on the map will be Healed
   image: {fileID: 0}

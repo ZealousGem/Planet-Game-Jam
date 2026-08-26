@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class Settlement : MonoBehaviour
     [Header("Health Properties")]
     [SerializeField] private float Health;
     [SerializeField] private Image HealthBar;
+    [SerializeField] private TMP_Text Num;
 
     [Header("Building")]
     [SerializeField] private SpriteRenderer builind;
@@ -26,6 +28,42 @@ public class Settlement : MonoBehaviour
         maxHealth = Health; if (HealthBar != null &&
         HealthBar.gameObject.activeSelf) HealthBar.gameObject.SetActive(false);
     }
+
+    private void OnEnable()
+    {
+        EventBus.Subscribe<UpgradeEvent>(RetrieveData);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe<UpgradeEvent>(RetrieveData);
+    }
+
+    public void AddNumber(int num)
+    {
+        Num.text = num.ToString();
+    }
+
+    private void RetrieveData(UpgradeEvent events)
+    {
+        switch (events)
+        {
+            case HealALLTowerEvent Healthevents:
+                Health = maxHealth;
+                HealthBarLogic();
+                DamagePopUp.CreatePopUp(PopUpUI, transform, "Healed"); break;
+            case HealATowerEvent Healevents:
+                if (Healevents.Name == transform.name)
+                {
+                    Debug.Log("Healed " + transform.name);
+                    Health = maxHealth; HealthBarLogic();
+                    DamagePopUp.CreatePopUp(PopUpUI, transform, "Healed");
+                }
+                break;
+        }
+
+    }
+
     public void DamageTower(float Damage)
     {
         if (isDead) return;
@@ -49,6 +87,11 @@ public class Settlement : MonoBehaviour
 
             StartCoroutine(BlowUpSettlement());
         }
+    }
+
+    public float getCurrentHealth()
+    {
+        return Health;
     }
 
     private void HealthBarLogic()

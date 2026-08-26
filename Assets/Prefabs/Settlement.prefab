@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Settlement
   Health: 500
   HealthBar: {fileID: 1934607208346721205}
+  Num: {fileID: 1692676560808071607}
   builind: {fileID: 4426479920934581417}
   debris: {fileID: 6694470362664292502}
   PopUpUI: {fileID: 1080138394770557067, guid: 89464c203c7da8049a829a7aa66e764e, type: 3}
