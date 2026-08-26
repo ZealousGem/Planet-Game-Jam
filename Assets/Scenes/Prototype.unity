@@ -8732,8 +8732,8 @@ MonoBehaviour:
   m_SelectionSources:
     rid: 5860744994053947477
   m_FalloffIntensity: 0.851
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6.74
+  m_Color: {r: 0.97735846, g: 0.8821157, b: 0.5808828, a: 1}
+  m_Intensity: 3.99
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -9565,8 +9565,8 @@ MonoBehaviour:
   m_SelectionSources:
     rid: 5860744994053947477
   m_FalloffIntensity: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6.28
+  m_Color: {r: 0.97735846, g: 0.8821157, b: 0.5808828, a: 1}
+  m_Intensity: 3.99
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -12391,8 +12391,8 @@ MonoBehaviour:
   m_SelectionSources:
     rid: 5860744994053947477
   m_FalloffIntensity: 0.851
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3.38
+  m_Color: {r: 0.97735846, g: 0.8821157, b: 0.5808828, a: 1}
+  m_Intensity: 3.99
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -20589,8 +20589,8 @@ MonoBehaviour:
   m_SelectionSources:
     rid: 5860744994053947477
   m_FalloffIntensity: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.97
+  m_Color: {r: 0.97735846, g: 0.8821157, b: 0.5808828, a: 1}
+  m_Intensity: 3.99
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -23445,8 +23445,8 @@ MonoBehaviour:
   m_SelectionSources:
     rid: 5860744994053947477
   m_FalloffIntensity: 0.851
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6.74
+  m_Color: {r: 0.97735846, g: 0.8821157, b: 0.5808828, a: 1}
+  m_Intensity: 3.99
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -32178,8 +32178,8 @@ MonoBehaviour:
   m_SelectionSources:
     rid: 5860744994053947477
   m_FalloffIntensity: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3.25
+  m_Color: {r: 0.97735846, g: 0.8821157, b: 0.5808828, a: 1}
+  m_Intensity: 3.99
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -33623,7 +33623,7 @@ MonoBehaviour:
   m_SelectionSources:
     rid: 5860744994053947477
   m_FalloffIntensity: 0.968
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.97735846, g: 0.8821157, b: 0.5808828, a: 1}
   m_Intensity: 3.99
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
