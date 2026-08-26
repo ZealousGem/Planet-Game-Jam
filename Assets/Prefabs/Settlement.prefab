@@ -701,7 +701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1235157760440815033, guid: 0f44333310783b04a971d6f0e560b29b, type: 3}
       propertyPath: m_text
-      value: Base 1
+      value: 'Base '
       objectReference: {fileID: 0}
     - target: {fileID: 1235157760440815033, guid: 0f44333310783b04a971d6f0e560b29b, type: 3}
       propertyPath: m_fontAsset
