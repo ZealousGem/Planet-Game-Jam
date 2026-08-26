@@ -11,7 +11,7 @@ public class ControlsMenu : BaseMainMenu
     protected override void Awake()
     {
         ReadyButton.onClick.AddListener(ReadiedUp);
-        QuitButton.onClick.AddListener(QuittingGame);
+        QuitButton.onClick.AddListener(ReturnToMainMenu);
     }
 
     private void Start()
@@ -34,7 +34,7 @@ public class ControlsMenu : BaseMainMenu
     private void QuittingGame()
     {
         DOTween.KillAll();
-        Application.Quit();
+
     }
 
 }

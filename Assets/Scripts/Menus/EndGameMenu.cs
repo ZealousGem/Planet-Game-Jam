@@ -44,7 +44,7 @@ public class EndGameMenu : BaseMainMenu
             //  case GameState.Success: MenuButton.onClick.AddListener(NextLevel); ButtonText.text = NextLevelText; break;
             case GameState.Failure:
                 RestartButton.onClick.AddListener(ResetLevel); ButtonText.text = "Restart";
-                MenuButton.onClick.AddListener(QuitGame);
+                MenuButton.onClick.AddListener(ReturnToMainMenu);
                 break;
         }
     }

@@ -110,7 +110,7 @@ public class PauseMenu : BaseMainMenu
     {
         if (isPaused) Time.timeScale = 1f;
         DOTween.KillAll();
-        //base.ReturnToMainMenu();
+        base.ReturnToMainMenu();
     }
 
 }
