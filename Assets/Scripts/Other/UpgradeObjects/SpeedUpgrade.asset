@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9caa9c1598ff04db62d27c149c4d2e, type: 3}
   m_Name: SpeedUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::SpeedUpgrade
-  Title: 
-  Description: 
+  Title: Increase Speed
+  Description: Increase Movement of the Satelitte Camera by 1
   image: {fileID: 0}
-  Speed: 0
+  Speed: 1

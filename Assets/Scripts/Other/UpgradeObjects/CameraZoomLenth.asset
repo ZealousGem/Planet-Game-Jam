@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1787b78e3e0d24596890d6d7067ba0, type: 3}
   m_Name: CameraZoomLenth
   m_EditorClassIdentifier: Assembly-CSharp::CameraZoomUpgrade
-  Title: 
-  Description: 
+  Title: Increase Zoom Upgrade
+  Description: Increase ZoomOut lens to see more of map
   image: {fileID: 0}
-  Speed: 0
+  Speed: 0.3

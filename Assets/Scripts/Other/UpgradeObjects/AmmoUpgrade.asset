@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9884fb81a0d149f409958c70a6c75f9b, type: 3}
   m_Name: AmmoUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::AmmoUpgrade
-  Title: 
-  Description: 
+  Title: Increase Ammo
+  Description: Weapons Ammo by 5 to shoot extra Bullets
   image: {fileID: 0}
-  Ammo: 0
+  Ammo: 5

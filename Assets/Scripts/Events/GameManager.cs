@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
                 EventBus.Act(new NumUIEvent(UIevents.EnemiesLeft, TotalEnemiesInWave)); break;
 
             case GameState.Failure: EventBus.Act(new GameStateEvent(GameState.Failure)); break;
+            case GameState.Upgrades: EventBus.Act(new GameStateEvent(GameState.Upgrades)); break;
         }
     }
     private void Update()
@@ -96,7 +97,7 @@ public class GameManager : MonoBehaviour
             waveIndex++;
             EventBus.Act(new NumUIEvent(UIevents.Waves, waveIndex));
 
-            setGameState(GameState.StartWave);
+            setGameState(GameState.Upgrades);
 
         }
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa792ced5c53214d8b8496e5d635cc6, type: 3}
   m_Name: ShotCooldownUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::ShotCooldownUpgrade
-  Title: 
-  Description: 
+  Title: Increase Fire Rate
+  Description: 'increase firing rate of weapon '
   image: {fileID: 0}
-  Speed: 0
+  Speed: 0.3

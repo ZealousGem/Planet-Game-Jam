@@ -7,5 +7,7 @@ public class SpeedUpgrade : BaseUpgrade
     public override void Effect()
     {
         //throw new System.NotImplementedException();
+        EventBus.Act(new SpeedEvent(Speed));
+        Debug.Log("speed");
     }
 }

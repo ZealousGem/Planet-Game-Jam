@@ -86,12 +86,103 @@ public class SettlementCounterEvent : EventData
 
 public class UpgradeEvent : EventData
 {
-    public int num;
 
-    public UpgradeEvent(int num)
+
+    public UpgradeEvent()
     {
-        this.num = num;
     }
 }
+
+public class DamageEvent : UpgradeEvent
+{
+    public float Damage;
+    public DamageEvent(float Damage)
+    {
+        this.Damage = Damage;
+    }
+}
+
+public class AmmoEvent : UpgradeEvent
+{
+    public float Ammo;
+    public AmmoEvent(float Damage)
+    {
+        this.Ammo = Damage;
+    }
+}
+
+public class ShotCoolDownEvent : UpgradeEvent
+{
+    public float CoolDown;
+    public ShotCoolDownEvent(float Damage)
+    {
+        this.CoolDown = Damage;
+    }
+}
+
+public class ReloadTimerEvent : UpgradeEvent
+{
+    public float CoolDown;
+    public ReloadTimerEvent(float Damage)
+    {
+        this.CoolDown = Damage;
+    }
+}
+
+public class SpeedEvent : UpgradeEvent
+{
+    public float Speed;
+    public SpeedEvent(float Damage)
+    {
+        this.Speed = Damage;
+    }
+}
+
+public class HitBoxEvent : UpgradeEvent
+{
+    public Vector2 Scale;
+    public HitBoxEvent(Vector2 Damage)
+    {
+        this.Scale = Damage;
+    }
+}
+
+public class CameraZoomEvent : UpgradeEvent
+{
+    public float Size;
+    public CameraZoomEvent(float Damage)
+    {
+        this.Size = Damage;
+    }
+}
+
+public class SpawnTowerEvent : UpgradeEvent
+{
+    public GameObject Tower;
+    public int counter = 1;
+    public SpawnTowerEvent(GameObject Damage)
+    {
+        this.Tower = Damage;
+    }
+}
+
+public class HealATowerEvent : UpgradeEvent
+{
+    public string Name;
+    public HealATowerEvent(string Damage)
+    {
+        this.Name = Damage;
+    }
+}
+
+public class HealALLTowerEvent : UpgradeEvent
+{
+
+    public HealALLTowerEvent()
+    {
+    }
+}
+
+
 
 

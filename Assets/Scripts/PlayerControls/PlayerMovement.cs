@@ -41,6 +41,27 @@ public class PlayerMovement : GameplayInputBinding
         cam = GetComponent<Camera>();
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        EventBus.Subscribe<UpgradeEvent>(RetrieveData);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        EventBus.Unsubscribe<UpgradeEvent>(RetrieveData);
+    }
+
+    protected virtual void RetrieveData(UpgradeEvent events)
+    {
+        switch (events)
+        {
+            case SpeedEvent _speedEvent: speed += _speedEvent.Speed; break;
+            case CameraZoomEvent cam: if (MaxZoom < 15f) MaxZoom += cam.Size; break;
+        }
+    }
+
     // inputs for movement 
     protected override void MoveSatelite(InputAction.CallbackContext value) => movement = value.ReadValue<Vector2>();
     protected override void CancelMovment(InputAction.CallbackContext value) => movement = Vector2.zero;

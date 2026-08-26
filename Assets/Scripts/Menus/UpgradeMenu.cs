@@ -12,7 +12,7 @@ public class UpgradeMenu : BaseMainMenu
     private List<BaseUpgrade> currentUpgrades = new List<BaseUpgrade>();
 
     [Header("Buttons")]
-    private List<Button> Buttons;
+    [SerializeField] private List<Button> Buttons;
 
     protected override void OnEnable()
     {
@@ -40,9 +40,11 @@ public class UpgradeMenu : BaseMainMenu
         InitlaiseButtons();
     }
 
+
+
     private void InitlaiseButtons()
     {
-        for (int i = 0; i < Buttons.Count;)
+        for (int i = 0; i < Buttons.Count; i++)
         {
             int index = i;
             Buttons[i].onClick.AddListener(() => invokeUpgrade(index));
@@ -75,11 +77,11 @@ public class UpgradeMenu : BaseMainMenu
 
         }
 
-        for (int i = 0; i < Buttons.Count;)
+        for (int i = 0; i < Buttons.Count; i++)
         {
             TMP_Text textMesh = Buttons[i].gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
             TMP_Text textMesh2 = Buttons[i].gameObject.transform.GetChild(1).GetComponent<TMP_Text>();
-            Image picture = Buttons[i].gameObject.transform.GetChild(3).GetComponent<Image>();
+            Image picture = Buttons[i].gameObject.transform.GetChild(2).GetComponent<Image>();
 
             if (textMesh != null && textMesh2 != null)
             {
@@ -98,7 +100,8 @@ public class UpgradeMenu : BaseMainMenu
 
     private void invokeUpgrade(int index)
     {
-        if (currentUpgrades.Count > index && currentUpgrades[index] != null) return;
+        Debug.Log("clicked");
+        if (currentUpgrades.Count > index && currentUpgrades[index] == null) return;
 
         currentUpgrades[index].Effect();
 

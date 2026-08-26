@@ -76,7 +76,6 @@ public class WaveManager : MonoBehaviour
         {
             case WaveStateEvent wave:
                 EnemeyWaveAmount = wave.WaveAmount;
-                Debug.Log(EnemeyWaveAmount);
                 StartCoroutine(StartWave()); break;
             default: currentGameState = data.gameState; break;
         }

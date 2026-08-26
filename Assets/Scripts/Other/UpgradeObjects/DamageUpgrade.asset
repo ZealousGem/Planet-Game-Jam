@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be961620658faca478b1a4049544ea4a, type: 3}
   m_Name: DamageUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::DamageUpgrade
-  Title: 
-  Description: 
+  Title: Increase Missile Damage
+  Description: Increase Damage of Missile by 5
   image: {fileID: 0}
-  Damage: 0
+  Damage: 5

@@ -7,6 +7,7 @@ public class AmmoUpgrade : BaseUpgrade
     public override void Effect()
     {
         //throw new System.NotImplementedException();
+        EventBus.Act(new AmmoEvent(Ammo));
     }
 }
 

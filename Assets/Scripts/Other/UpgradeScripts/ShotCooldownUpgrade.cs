@@ -7,5 +7,6 @@ public class ShotCooldownUpgrade : BaseUpgrade
     public override void Effect()
     {
         //throw new System.NotImplementedException();
+        EventBus.Act(new ShotCoolDownEvent(Speed));
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94da427548bff0546825068f6521ab49, type: 3}
   m_Name: ReloadCooldownUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::ReloadCooldownUpgrade
-  Title: 
-  Description: 
+  Title: Decrease Reload Cooldown
+  Description: Decrease amount of time needed to reload
   image: {fileID: 0}
-  Speed: 0
+  Speed: 0.3

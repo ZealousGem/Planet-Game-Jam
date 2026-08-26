@@ -11,6 +11,8 @@ public class Ammo : MonoBehaviour
     /// </summary>
     [SerializeField] private float lifeTime = 0.8f;
     [SerializeField] private float Damage = 45f;
+
+    private float currentDamage;
     private Collider2D collider2D;
     // bullet life span once active
     private GunPool pool;
@@ -29,6 +31,8 @@ public class Ammo : MonoBehaviour
     // uses invoke to player life span if object has no collided with anything
     private void OnEnable()
     {
+        float bonus = (pool != null) ? pool.getBonusDamage() : 0f;
+        currentDamage = Damage + bonus;
         Invoke(nameof(ReturnToPool), lifeTime);
     }
 
@@ -37,13 +41,18 @@ public class Ammo : MonoBehaviour
         CancelInvoke();
     }
 
+    public void setDamage(float _Damage)
+    {
+        Damage += _Damage;
+    }
+
     // bullet will be deactived if triggered or colliding an enemy 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out BaseEnemy enemy))
         {
             // Deal damage here if needed
-            enemy.DamageEnemy(Damage);
+            enemy.DamageEnemy(currentDamage);
             // ReturnToPool();
         }
     }

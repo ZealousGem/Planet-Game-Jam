@@ -6,6 +6,6 @@ public class ReloadCooldownUpgrade : BaseUpgrade
     public float Speed;
     public override void Effect()
     {
-        //throw new System.NotImplementedException();
+        EventBus.Act(new ReloadTimerEvent(Speed));
     }
 }

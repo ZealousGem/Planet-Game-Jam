@@ -41,6 +41,20 @@ public class SateliteControls : PlayerMovement
         EventBus.Act(new NumUIEvent(UIevents.Ammo, bulletCounter));
     }
 
+    protected override void RetrieveData(UpgradeEvent events)
+    {
+        base.RetrieveData(events);
+
+        switch (events)
+        {
+            case ReloadTimerEvent reload: reloadSpeed -= reload.CoolDown; break;
+            case ShotCoolDownEvent recoil: recoilSpeed -= recoil.CoolDown; break;
+            case AmmoEvent ammoEvent:
+                Maxbulletcount += (int)ammoEvent.Ammo;
+                bulletCounter = Maxbulletcount; EventBus.Act(new NumUIEvent(UIevents.Ammo, bulletCounter)); break;
+        }
+    }
+
     // uses shooting bullet input uses pooling system to spawn or relocate object
     protected override void ShootBullet(InputAction.CallbackContext value)
     {

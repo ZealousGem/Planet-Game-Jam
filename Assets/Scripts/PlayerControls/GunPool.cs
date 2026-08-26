@@ -16,12 +16,36 @@ public class GunPool : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("Weapon")]
     [SerializeField] private GameObject Missile;
+    [SerializeField] private float Damage = 0;
     private Queue<GameObject> bullets;
 
     // creates a new queue at begining of scene so variable isnt null during runtime
     private void Awake()
     {
         bullets = new Queue<GameObject>();
+    }
+
+    void OnEnable()
+    {
+        EventBus.Subscribe<UpgradeEvent>(RetrieveData);
+    }
+
+    void OnDisable()
+    {
+        EventBus.Unsubscribe<UpgradeEvent>(RetrieveData);
+    }
+
+    public float getBonusDamage()
+    {
+        return Damage;
+    }
+
+    private void RetrieveData(UpgradeEvent events)
+    {
+        switch (events)
+        {
+            case DamageEvent changeDamage: Damage += changeDamage.Damage; break;
+        }
     }
 
     // activates any deactived bullets from queue  or instaniate bullet if queue is empty

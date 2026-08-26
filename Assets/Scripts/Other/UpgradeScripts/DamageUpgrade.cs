@@ -6,6 +6,6 @@ public class DamageUpgrade : BaseUpgrade
     public float Damage;
     public override void Effect()
     {
-        //throw new System.NotImplementedException();
+        EventBus.Act(new DamageEvent(Damage));
     }
 }
