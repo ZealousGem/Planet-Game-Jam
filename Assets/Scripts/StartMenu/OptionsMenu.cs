@@ -212,7 +212,7 @@ public class OptionsMenu : BaseMainMenu
 
     public void ManageDiageticAudio(float volume)
     {
-        //SoundPlayer.ManageDiageticSound(PerceptialVolume(volume));
+        SoundPlayer.ManageDiageticSound(PerceptialVolume(volume));
         WriteData(SettingsDataValue.DiageticSoundValue, volume);
     }
 

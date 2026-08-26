@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         EventBus.Act(new NumUIEvent(UIevents.Bases, TowerAmount));
         EventBus.Act(new NumUIEvent(UIevents.Waves, waveIndex));
+         SoundPlayer.PlaySound("GameMusic");
 
         // setGameState(GameState.StartWave);
         // setGameState(GameState.Ongoing);
@@ -82,7 +83,7 @@ public class GameManager : MonoBehaviour
                 EventBus.Act(new WaveStateEvent(GameState.StartWave, TotalEnemiesInWave));
                 EventBus.Act(new NumUIEvent(UIevents.EnemiesLeft, TotalEnemiesInWave)); break;
 
-            case GameState.Failure: EventBus.Act(new GameStateEvent(GameState.Failure)); break;
+            case GameState.Failure: EventBus.Act(new GameStateEvent(GameState.Failure));  SoundPlayer.StopAllInGameSounds(); break;
             case GameState.Upgrades: EventBus.Act(new GameStateEvent(GameState.Upgrades)); break;
         }
     }

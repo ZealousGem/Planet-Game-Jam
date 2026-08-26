@@ -53,7 +53,7 @@ public class BaseMainMenu : UIController
 
     public virtual void ReturnToMainMenu()
     {
-        //SoundPlayer.StopAllInGameSounds();
+        SoundPlayer.StopAllInGameSounds();
         DOTween.KillAll();
         SceneManager.LoadScene(0);
     } 

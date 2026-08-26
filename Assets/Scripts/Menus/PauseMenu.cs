@@ -80,14 +80,14 @@ public class PauseMenu : BaseMainMenu
     {
         if (isPaused) Time.timeScale = 1f;
         DOTween.KillAll();
-        // SoundPlayer.StopAllInGameSounds();    
+        SoundPlayer.StopAllInGameSounds();    
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
 
     private void PauseGame()
     {
-        //  SoundPlayer.PauseSound();
+        SoundPlayer.PauseSound();
         isPaused = true;
 
         Time.timeScale = 0f;
@@ -97,7 +97,7 @@ public class PauseMenu : BaseMainMenu
 
     public void UnPauseGame()
     {
-        // SoundPlayer.UnpauseSound();
+        SoundPlayer.UnpauseSound();
         isPaused = false;
 
         Time.timeScale = 1f;

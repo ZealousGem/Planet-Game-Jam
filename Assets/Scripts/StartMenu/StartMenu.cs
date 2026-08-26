@@ -30,13 +30,17 @@ public class StartMenu : BaseMainMenu
 
     void Start()
     {
-        // SoundPlayer.PlaySound("MenuMusic");
+         SoundPlayer.PlaySound("MenuMusic");
+
+        // https://pixabay.com/music/folk-forest-fear-survival-action-drama-music-453621/
+        // https://pixabay.com/music/ambient-space-587944/
+        // https://pixabay.com/music/synthwave-outer-space-151769/ 
     }
 
     private void PlayNewGame()
     {
         DOTween.KillAll();
-        //SoundPlayer.StopAllInGameSounds();
+        SoundPlayer.StopAllInGameSounds();
         SceneManager.LoadScene(1);
     }
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4627205853890326215}
   - component: {fileID: 1960843918649675673}
+  - component: {fileID: -5715688785093224785}
   m_Layer: 0
   m_Name: Singleton
   m_TagString: Untagged
@@ -44,3 +45,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b4339a8337b4242bee23ea586750e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIInput
+--- !u!114 &-5715688785093224785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293013661317853050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e5d0ec61dab4f469453364ba31ca03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  sounds:
+  - nameClip: MenuMusic
+    clip: {fileID: 8300000, guid: 479cf62e50c51bd4493f86c8684d9cc0, type: 3}
+    volume: 0.819
+    pitch: 1
+    maxvol: 0
+    loop: 1
+    type: 1
+    state: 0
+    isPlaying: 0
+  - nameClip: GameMusic
+    clip: {fileID: 8300000, guid: bb383c4a70c58ca4eab456884234523a, type: 3}
+    volume: 0.801
+    pitch: 1
+    maxvol: 0
+    loop: 1
+    type: 1
+    state: 0
+    isPlaying: 0
