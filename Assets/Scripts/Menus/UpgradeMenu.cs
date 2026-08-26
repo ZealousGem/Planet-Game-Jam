@@ -79,11 +79,17 @@ public class UpgradeMenu : BaseMainMenu
         {
             TMP_Text textMesh = Buttons[i].gameObject.transform.GetChild(0).GetComponent<TMP_Text>();
             TMP_Text textMesh2 = Buttons[i].gameObject.transform.GetChild(1).GetComponent<TMP_Text>();
+            Image picture = Buttons[i].gameObject.transform.GetChild(3).GetComponent<Image>();
 
-            if(textMesh != null && textMesh2 != null)
+            if (textMesh != null && textMesh2 != null)
             {
                 textMesh.text = currentUpgrades[i].Title;
                 textMesh2.text = currentUpgrades[i].Description;
+            }
+
+            if (picture != null && currentUpgrades[i].image != null)
+            {
+                picture.sprite = currentUpgrades[i].image;
             }
         }
 
@@ -96,7 +102,6 @@ public class UpgradeMenu : BaseMainMenu
 
         currentUpgrades[index].Effect();
 
-        currentUpgrades.Clear();
         Menu(false);
 
         EventBus.Act(new GameManagerEvent(GameState.StartWave));
