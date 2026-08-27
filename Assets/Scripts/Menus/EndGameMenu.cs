@@ -70,6 +70,7 @@ public class EndGameMenu : BaseMainMenu
 
     protected void EvokeMenu(string title, string reason, float tim = 1f)
     {
+        SoundPlayer.PlaySound("FailedWave");
         Menu(true);
         Title.text = title;
 

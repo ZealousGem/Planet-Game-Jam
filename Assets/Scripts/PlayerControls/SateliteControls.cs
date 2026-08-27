@@ -64,6 +64,7 @@ public class SateliteControls : PlayerMovement
         spawnPosition.z = 0f;
 
         if (animator != null) animator.SetBool("Attack", true);
+        SoundPlayer.PlaySound("Shooting");
 
         pool.getObj(spawnPosition, transform.rotation);
 

@@ -60,7 +60,7 @@ MonoBehaviour:
   sounds:
   - nameClip: MenuMusic
     clip: {fileID: 8300000, guid: 479cf62e50c51bd4493f86c8684d9cc0, type: 3}
-    volume: 0.819
+    volume: 0.641
     pitch: 1
     maxvol: 0
     loop: 1
@@ -69,10 +69,91 @@ MonoBehaviour:
     isPlaying: 0
   - nameClip: GameMusic
     clip: {fileID: 8300000, guid: bb383c4a70c58ca4eab456884234523a, type: 3}
-    volume: 0.801
+    volume: 0.661
     pitch: 1
     maxvol: 0
     loop: 1
+    type: 1
+    state: 0
+    isPlaying: 0
+  - nameClip: UIbutton
+    clip: {fileID: 8300000, guid: 8c33ff3d14ec5494ca58c68c2d368d19, type: 3}
+    volume: 0.737
+    pitch: 1
+    maxvol: 0
+    loop: 0
+    type: 1
+    state: 0
+    isPlaying: 0
+  - nameClip: UIbuttonClicked
+    clip: {fileID: 8300000, guid: 882392a54dd6bcb4986d45b06a16ff9f, type: 3}
+    volume: 0.737
+    pitch: 1
+    maxvol: 0
+    loop: 0
+    type: 1
+    state: 0
+    isPlaying: 0
+  - nameClip: Shooting
+    clip: {fileID: 8300000, guid: 822e9889783fba94abb3a3855c33a42f, type: 3}
+    volume: 0.737
+    pitch: 1
+    maxvol: 0
+    loop: 0
+    type: 1
+    state: 0
+    isPlaying: 0
+  - nameClip: Explosion
+    clip: {fileID: 8300000, guid: eb02a80fb17725f45b43d6723da46ddb, type: 3}
+    volume: 0.737
+    pitch: 1
+    maxvol: 0
+    loop: 0
+    type: 1
+    state: 0
+    isPlaying: 0
+  - nameClip: WaveUI
+    clip: {fileID: 8300000, guid: 2a402a8fbf2d9d247a13f7f6d93cf6be, type: 3}
+    volume: 0.737
+    pitch: 1
+    maxvol: 0
+    loop: 0
+    type: 1
+    state: 0
+    isPlaying: 0
+  - nameClip: StartWave
+    clip: {fileID: 8300000, guid: 7c916ea2a6b4f394f885025d14311ebd, type: 3}
+    volume: 0.737
+    pitch: 1
+    maxvol: 0
+    loop: 0
+    type: 1
+    state: 0
+    isPlaying: 0
+  - nameClip: FailedWave
+    clip: {fileID: 8300000, guid: 23bb12e8099040c48a092ee3f0d57d3d, type: 3}
+    volume: 0.737
+    pitch: 1
+    maxvol: 0
+    loop: 0
+    type: 1
+    state: 0
+    isPlaying: 0
+  - nameClip: hit
+    clip: {fileID: 8300000, guid: 443c7d55d20781a4b81aa5d363662f10, type: 3}
+    volume: 0.737
+    pitch: 1
+    maxvol: 0
+    loop: 0
+    type: 1
+    state: 0
+    isPlaying: 0
+  - nameClip: upgrade
+    clip: {fileID: 8300000, guid: 78ec42306cad7474796a54b85b116dd5, type: 3}
+    volume: 0.737
+    pitch: 1
+    maxvol: 0
+    loop: 0
     type: 1
     state: 0
     isPlaying: 0

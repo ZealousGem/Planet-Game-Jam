@@ -62,8 +62,7 @@ public class GameManager : MonoBehaviour
         TowerAmount--;
         EventBus.Act(new NumUIEvent(UIevents.Bases, TowerAmount));
 
-        EventBus.Act(new PopUpEvent(UIevents.Tower, "Base Destroyed"));
-        Debug.Log(TowerAmount);
+        // Debug.Log(TowerAmount);
 
         if (TowerAmount <= 0)
         {
@@ -71,6 +70,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        EventBus.Act(new PopUpEvent(UIevents.Tower, "Base Destroyed"));
     }
 
     private void setGameState(GameState gameState)
@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
             EventBus.Act(new NumUIEvent(UIevents.Waves, waveIndex));
 
             setGameState(GameState.Upgrades);
+            SoundPlayer.PlaySound("upgrade");
 
         }
     }

@@ -70,6 +70,7 @@ public class Settlement : MonoBehaviour
     {
         if (isDead) return;
         Health -= Damage;
+        SoundPlayer.PlaySound("hit");
 
         HealthBarLogic();
 
@@ -125,6 +126,8 @@ public class Settlement : MonoBehaviour
         builind.enabled = false;
         debris.SetActive(true);
         yield return new WaitForSeconds(0.5f);
+
+        SoundPlayer.PlaySound("Explosion");
         Destroy(gameObject);
     }
 }

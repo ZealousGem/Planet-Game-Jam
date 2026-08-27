@@ -101,8 +101,10 @@ public class WaveManager : MonoBehaviour
         float currentTime = 5f;
         int lastLoggedSecond = -1;
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.8f);
         EventBus.Act(new PopUpEvent(UIevents.WaveStart, "Starting Wave"));
+        SoundPlayer.PlaySound("WaveUI");
+
         yield return new WaitForSeconds(0.8f);
 
         while (currentTime >= 1)
@@ -115,6 +117,8 @@ public class WaveManager : MonoBehaviour
             if (currentSecond != lastLoggedSecond)
             {
                 lastLoggedSecond = currentSecond;
+                SoundPlayer.PlaySound("WaveUI");
+
                 EventBus.Act(new PopUpEvent(UIevents.WaveStart, lastLoggedSecond.ToString()));
                 // string annouceText = " New Wave Starting in " + currentTime.ToString("F0");
                 // Debug.Log(annouceText);
@@ -129,6 +133,8 @@ public class WaveManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
+        SoundPlayer.PlaySound("StartWave");
+
         EventBus.Act(new PopUpEvent(UIevents.WaveStart, "Protect The Bases"));
         yield return new WaitForSeconds(0.8f);
         EventBus.Act(new PopUpEvent(UIevents.WaveStart, ""));
