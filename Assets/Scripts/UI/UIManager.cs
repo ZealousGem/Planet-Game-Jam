@@ -21,12 +21,24 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventBus.Subscribe<UIEvent>(RetreiveData);
+        EventBus.Subscribe<PopUpEvent>(RetreiveData);
+        EventBus.Subscribe<NumUIEvent>(RetreiveData);
     }
 
     private void OnDisable()
     {
-        EventBus.Unsubscribe<UIEvent>(RetreiveData);
+        EventBus.Unsubscribe<PopUpEvent>(RetreiveData);
+        EventBus.Unsubscribe<NumUIEvent>(RetreiveData);
+    }
+
+    private void RetreiveData(PopUpEvent data)
+    {
+        DeterminePopUp(data.uiType, data.stringText);
+    }
+
+    private void RetreiveData(NumUIEvent data)
+    {
+        DetermineNumUI(data.uiType, data.num);
     }
 
     private void RetreiveData(UIEvent data)
@@ -34,7 +46,7 @@ public class UIManager : MonoBehaviour
         switch (data)
         {
             case NumUIEvent numEvent: DetermineNumUI(numEvent.uiType, numEvent.num); break;
-            case PopUpEvent popEvent: DeterminePopUp(popEvent.uiType, popEvent.stringText); break;
+                //   case PopUpEvent popEvent: DeterminePopUp(popEvent.uiType, popEvent.stringText); break;
         }
     }
     private void DetermineNumUI(UIevents uIevents, int num)
@@ -82,6 +94,8 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator TowerDestoryedEvent(string text)
     {
+        if (TowerNotifyUI.alpha == 0f) { TowerNotifyUI.alpha = 1f; }
+        Debug.Log("tower gone");
         TowerNotifyUI.text = text;
         TowerNotifyUI.transform.DOPunchScale(Vector3.one * 0.2f, 0.5f, vibrato: 10, elasticity: 1f);
 

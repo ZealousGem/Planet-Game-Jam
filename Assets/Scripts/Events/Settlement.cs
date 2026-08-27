@@ -31,12 +31,14 @@ public class Settlement : MonoBehaviour
 
     private void OnEnable()
     {
-        EventBus.Subscribe<UpgradeEvent>(RetrieveData);
+        EventBus.Subscribe<HealATowerEvent>(RetrieveData);
+        EventBus.Subscribe<HealALLTowerEvent>(RetrieveData);
     }
 
     private void OnDisable()
     {
-        EventBus.Unsubscribe<UpgradeEvent>(RetrieveData);
+        EventBus.Unsubscribe<HealATowerEvent>(RetrieveData);
+        EventBus.Unsubscribe<HealALLTowerEvent>(RetrieveData);
     }
 
     public void AddNumber(int num)
@@ -44,24 +46,24 @@ public class Settlement : MonoBehaviour
         Num.text = num.ToString();
     }
 
-    private void RetrieveData(UpgradeEvent events)
+    private void RetrieveData(HealALLTowerEvent events)
     {
-        switch (events)
-        {
-            case HealALLTowerEvent Healthevents:
-                Health = maxHealth;
-                HealthBarLogic();
-                DamagePopUp.CreatePopUp(PopUpUI, transform, "Healed"); break;
-            case HealATowerEvent Healevents:
-                if (Healevents.Name == transform.name)
-                {
-                    Debug.Log("Healed " + transform.name);
-                    Health = maxHealth; HealthBarLogic();
-                    DamagePopUp.CreatePopUp(PopUpUI, transform, "Healed");
-                }
-                break;
-        }
 
+        Health = maxHealth;
+        HealthBarLogic();
+        DamagePopUp.CreatePopUp(PopUpUI, transform, "Healed");
+        Debug.Log("Upgrades work");
+
+    }
+
+    private void RetrieveData(HealATowerEvent events)
+    {
+        if (events.Name == transform.name)
+        {
+            Debug.Log("Healed " + transform.name);
+            Health = maxHealth; HealthBarLogic();
+            DamagePopUp.CreatePopUp(PopUpUI, transform, "Healed");
+        }
     }
 
     public void DamageTower(float Damage)

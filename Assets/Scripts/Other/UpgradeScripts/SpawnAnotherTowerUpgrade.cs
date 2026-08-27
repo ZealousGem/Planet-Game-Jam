@@ -41,6 +41,8 @@ public class SpawnAnotherTowerUpgrade : BaseUpgrade
             int Settlementnum = settlements.Length;
 
             settlement.AddNumber(Settlementnum);
+
+            obj.name = $"Settlement_{System.Guid.NewGuid().ToString().Substring(0, 4)}";
         }
 
         EventBus.Act(new SpawnTowerEvent(1, obj));

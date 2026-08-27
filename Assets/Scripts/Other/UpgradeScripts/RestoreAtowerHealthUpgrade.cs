@@ -7,10 +7,14 @@ public class RestoreAtowerHealthUpgrade : BaseUpgrade
     [SerializeField] private float detectionRadius = 5f;
     public override void Effect()
     {
-        Transform position = UIInput.Instance.transform;
+        Transform position = GetCoordinate.ReturnPosition();
         Collider2D[] settlements = Physics2D.OverlapCircleAll(position.position, detectionRadius, targetLayerMask);
 
-        if (settlements.Length <= 0) return;
+        if (settlements.Length <= 0)
+        {
+            Debug.Log("no towers");
+            return;
+        }
 
         float LowestHealth = 0;
 
